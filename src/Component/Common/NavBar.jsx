@@ -1,11 +1,12 @@
-import React from 'react'
-import Container from './Container'
-import logo from '../../assets/Logo.png'
+import React, { useState } from "react";
+import Container from "./Container";
+import logo from "../../assets/Logo.png";
 import { IoIosSearch } from "react-icons/io";
 import { CiHeart } from "react-icons/ci";
 import { PiShoppingCartThin } from "react-icons/pi";
 
 const NavBar = () => {
+  const [search, setSearch] = useState("");
   return (
     <div className=" py-8 bg-white border-b">
       <Container>
@@ -22,13 +23,17 @@ const NavBar = () => {
           <div className=" flex gap-6 items-center">
             <div className="w-60.75 rounded-sm relative ">
               <input
-                className=" bg-[#F5F5F5] w-full py-1.75 px-3  "
+                className=" bg-[#F5F5F5] w-full py-1.75 px-3 placeholder:text-[12px]  "
                 type="search"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
                 name=""
                 id=""
                 placeholder="What are you looking for?"
               />
-              <IoIosSearch className=" absolute top-1/2 -translate-1/2 right-1 text-2xl " />
+              {!search && (
+                <IoIosSearch className=" absolute top-1/2 -translate-1/2 right-1 text-2xl " />
+              )}
             </div>
             <div className="flex gap-4 text-[32px] ">
               <CiHeart />
@@ -39,6 +44,6 @@ const NavBar = () => {
       </Container>
     </div>
   );
-}
+};
 
-export default NavBar
+export default NavBar;
