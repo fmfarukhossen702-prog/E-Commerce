@@ -32,7 +32,7 @@ const NavBar = () => {
                 placeholder="What are you looking for?"
               />
               {!search && (
-                <IoIosSearch className=" absolute top-1/2 -translate-1/2 right-1 text-2xl " />
+                <IoIosSearch className=" absolute top-1/2 cursor-pointer -translate-1/2 right-1 text-2xl " />
               )}
             </div>
             <div className="flex gap-4 text-[32px] ">

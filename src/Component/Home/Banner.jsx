@@ -1,8 +1,28 @@
-import React from 'react'
-import Container from '../Common/Container'
+import React from "react";
+import Container from "../Common/Container";
 import { IoIosArrowForward } from "react-icons/io";
+import banner from "../../assets/banner.jpg";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Banner = () => {
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    appendDots: (dots) => (
+      <div className=" relative ">
+        <ul className="flex  justify-center absolute bottom-10 left-1/2 -translate-x-1/2  "> {dots} </ul>
+      </div>
+    ),
+    customPaging: (i) => (
+      <div className=" w-3 h-3 rounded-full bg-[#808080] "> </div>
+    ),
+  };
+
   return (
     <div className=" bg-white">
       <Container>
@@ -21,11 +41,26 @@ const Banner = () => {
               <li> Groceries & </li>
             </ul>
           </div>
-          <div className=" w-[80%] "></div>
+          <div className=" w-[80%] ml-13.5 mt-10 ">
+            <Slider.default {...settings}>
+              <div className="w-full">
+                <img className="w-full  " src={banner} alt="" />
+              </div>
+              <div className="w-full">
+                <img className="w-full  " src={banner} alt="" />
+              </div>
+              <div className="w-full">
+                <img className="w-full  " src={banner} alt="" />
+              </div>
+              <div className="w-full">
+                <img className="w-full  " src={banner} alt="" />
+              </div>
+            </Slider.default>
+          </div>
         </div>
       </Container>
     </div>
   );
-}
+};
 
-export default Banner
+export default Banner;
