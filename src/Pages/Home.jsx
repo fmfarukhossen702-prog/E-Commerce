@@ -5,6 +5,8 @@ import Banner from '../Component/Home/Banner'
 import FlashSales from '../Component/Home/FlashSales'
 import Category from '../Component/Home/Category'
 import BestSells from '../Component/Home/BestSells'
+import Music from '../Component/Home/Music'
+import OurProduct from '../Component/Home/OurProduct'
 
 const Home = () => {
   return (
@@ -15,6 +17,8 @@ const Home = () => {
       <FlashSales/>
       <Category/>
       <BestSells/>
+      <Music/>
+      <OurProduct/>
     </div>
   )
 }

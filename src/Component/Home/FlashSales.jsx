@@ -36,6 +36,8 @@ function SamplePrevArrow({onClick}) {
 }
 
 const SliderComponent = Slider?.default ?? Slider;
+
+
 const FlashSales = () => {
   const settings = {
     dots: true,
@@ -43,6 +45,7 @@ const FlashSales = () => {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 3,
+    row:2,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     appendDots: (dots) => (

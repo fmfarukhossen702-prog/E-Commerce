@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Btn = ({ children ,className}) => {
+const Btn = ({ children ,className = ""}) => {
   return (
     <div>
       <button
-        className={`${className} py-4 px-12 bg-primary rounded-sm font-medium text-[#FAFAFA] `}
+        className={` py-4 px-12 bg-primary rounded-sm font-medium text-[#FAFAFA] ${className}`}
       >
   
         {children}

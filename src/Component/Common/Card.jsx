@@ -13,9 +13,10 @@ const Card = ({
   review,
   AddToCardCss,
   disCountCss,
+  priceRatingCss,
 }) => {
   return (
-    <div className=" w-67.5 cursor-progress group h-87.5 ">
+    <div className=" w-67.5 cursor-pointer group h-87.5 ">
       <div className=" relative  ">
         <div className=" h-62.5 relative overflow-hidden ">
           <img src={image} alt="" />
@@ -28,9 +29,11 @@ const Card = ({
         <div
           className={` ${disCountCss}  w-13.75 h-6.5 rounded-sm absolute top-3 left-3 bg-primary flex items-center justify-center text-[12px] `}
         >
+          {/* discount here  */}
           {discount}
         </div>
         <div className="absolute top-3 right-3 space-y-2.5 ">
+          {/* Heart icon add  */}
           <div className=" w-8.5 h-8.5 rounded-full text-xl bg-white flex items-center justify-center  ">
             <CiHeart />
           </div>
@@ -39,14 +42,17 @@ const Card = ({
           </div>
         </div>
       </div>
+
       <h3 className=" font-medium pt-4 pb-2"> {title} </h3>
-      <div className=" font-medium flex gap-4 items-center ">
-        <h5 className="text-primary"> {currentPrice} </h5>
-        <h5 className=" line-through text-[#00000060] "> {regularPrice} </h5>
-      </div>
-      <div className=" font-medium flex gap-4 items-center mt-2 ">
-        <Rate allowHalf defaultValue={rating} />
-        <h5 className="  text-[#00000060] ">{review} </h5>
+      <div className={`${priceRatingCss} space-y-2`}>
+        <div className=" font-medium flex gap-4 items-center    ">
+          <h5 className="text-primary"> {currentPrice} </h5>
+          <h5 className=" line-through text-[#00000060] "> {regularPrice} </h5>
+        </div>
+        <div className=" font-medium flex gap-4 items-center">
+          <Rate allowHalf value={rating} />
+          <h5 className="  text-[#00000060] ">{review} </h5>
+        </div>
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import React from 'react'
 
 const CategoryCard = ({img, name,text}) => {
   return (
-    <div className=" w-42.5 h-36.25 group hover:bg-primary duration-200 rounded-sm flex flex-col border border-[#0000007f] justify-center items-center gap-2 ">
+    <div className=" w-42.5 cursor-pointer h-36.25 group hover:bg-primary duration-200 rounded-sm flex flex-col border border-[#0000007f] justify-center items-center gap-2 ">
       <div>
         <img src={img} alt="" />
       </div>
