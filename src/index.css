@@ -35,4 +35,18 @@ ul.slick-dots {
     display: hidden!;
 }
 
+.slick-slide.slick-active.slick-center.slick-current {
+  @apply scale-[1.2] h-full text-primary! border-primary!
+    /* scale: 1.2; 
+    height: 100%;
+    color: red; */
+}
+.slick-slide {
 
+  transform: scale(0.85);
+  transition: transform 0.5s ease;
+   /* height: 100%;
+  min-height: 0;  */
+   padding: 10px
+
+}

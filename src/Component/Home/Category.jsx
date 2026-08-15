@@ -12,8 +12,6 @@ import { MdOutlineWatch } from "react-icons/md";
 import { FaHeadphonesAlt } from "react-icons/fa";
 import { MdOutlineVideogameAsset } from "react-icons/md";
 
-
-
 function SampleNextArrow({ onClick }) {
   return (
     <button
@@ -39,28 +37,36 @@ function SamplePrevArrow({ onClick }) {
 const SliderComponent = Slider?.default ?? Slider;
 
 const Category = () => {
-   const settings = {
-     dots: true,
-     infinite: true,
-     speed: 500,
-     slidesToShow: 6,
-     slidesToScroll: 3,
-     nextArrow: <SampleNextArrow />,
-     prevArrow: <SamplePrevArrow />,
-     appendDots: (dots) => (
-       <div>
-         <ul> {dots} </ul>
-       </div>
-     ),
-     customPaging: () => <div></div>,
-   };
+  const settings = {
+    // dots: true,
+    infinite: true,
+    speed: 200,
+    slidesToShow: 6,
+    slidesToScroll: 3,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+
+    className: "center",
+    centerMode: true,
+    centerPadding: "0px",
+  };
+
+  //  const settings = {
+
+  //    infinite: true,
+
+  //    slidesToShow: 6,
+  //    speed: 500,
+
+  //  };
+
   return (
     <div>
       <Container>
         <SecHead title="Categories" heading="Browse By Category" />
 
-        <div className=" w-full py-15 border-b border-[#00000067] ">
-          <SliderComponent className="w-full  " {...settings}>
+        <div className=" w-full  py-15 border-b border-[#00000067] ">
+          <SliderComponent className="w-full  h-full " {...settings}>
             <div>
               <CategoryCard text={<GiSmartphone />} name="Phone" />
             </div>
@@ -85,7 +91,6 @@ const Category = () => {
             <div>
               <CategoryCard text={<MdOutlineVideogameAsset />} name="Gaming" />
             </div>
-
           </SliderComponent>
         </div>
       </Container>
