@@ -38,7 +38,7 @@ const SliderComponent = Slider?.default ?? Slider;
 
 const Category = () => {
   const settings = {
-    // dots: true,
+    dots: true,
     infinite: true,
     speed: 200,
     slidesToShow: 6,
@@ -49,16 +49,18 @@ const Category = () => {
     className: "center",
     centerMode: true,
     centerPadding: "0px",
+    appendDots: (dots) => (
+      <div
+     
+      >
+        <ul > {dots} </ul>
+      </div>
+    ),
+    customPaging: () => (
+      <div></div>
+
+    ),
   };
-
-  //  const settings = {
-
-  //    infinite: true,
-
-  //    slidesToShow: 6,
-  //    speed: 500,
-
-  //  };
 
   return (
     <div>

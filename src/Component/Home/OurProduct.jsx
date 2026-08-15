@@ -16,7 +16,7 @@ const SliderComponent = Slider?.default ?? Slider;
 function SampleNextArrow({ onClick }) {
   return (
     <button
-      className="w-11.5 h-11.5 rounded-full bg-[#F5F5F5] flex justify-center items-center "
+      className="w-11.5 h-11.5 absolute -top-20 right-0 rounded-full  bg-[#F5F5F5] flex justify-center items-center "
       onClick={onClick}
     >
       <FaArrowRightLong />
@@ -27,7 +27,7 @@ function SampleNextArrow({ onClick }) {
 function SamplePrevArrow({ onClick }) {
   return (
     <button
-      className="w-11.5 h-11.5 rounded-full bg-[#F5F5F5] flex justify-center items-center  "
+      className="w-11.5 h-11.5 absolute -top-20 right-15  rounded-full bg-[#F5F5F5] flex justify-center items-center  "
       onClick={onClick}
     >
       <FaArrowLeftLong />
@@ -38,10 +38,10 @@ function SamplePrevArrow({ onClick }) {
 const OurProduct = () => {
 
      const settings = {
-       //    className: "center gap-2 ",
-       centerMode: true,
+      //     className: "center  ",
+      //  centerMode: true,
        infinite: true,
-       centerPadding: "10px",
+       centerPadding: "0px",
        slidesToShow: 2,
        speed: 500,
        rows: 2,
@@ -51,11 +51,11 @@ const OurProduct = () => {
      };
 
   return (
-    <div className=" pt-17.5 pb-37 bg-white  ">
+    <div className=" pt-17.5 pb-15 bg-white  ">
       <Container>
         <SecHead title="Our Products " heading="Explore Our Products" />
         <div className="mt-10  ">
-          <SliderComponent className="w-full gap-2 " {...settings}>
+          <SliderComponent className="w-full  " {...settings}>
             <div className="my-2 ">
               <Card
                 image={img1}
