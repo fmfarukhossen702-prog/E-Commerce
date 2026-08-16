@@ -8,6 +8,7 @@ import BestSells from '../Component/Home/BestSells'
 import Music from '../Component/Home/Music'
 import OurProduct from '../Component/Home/OurProduct'
 import NewArrival from '../Component/Home/NewArrival'
+import Footer from '../Component/Common/Footer'
 
 const Home = () => {
   return (
@@ -21,6 +22,7 @@ const Home = () => {
       <Music/>
       <OurProduct/>
       <NewArrival/>
+      <Footer/>
     </div>
   )
 }

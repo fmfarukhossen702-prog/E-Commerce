@@ -13,7 +13,7 @@ import img6 from '../../assets/Icon-secure.png'
 
 const NewArrival = () => {
   return (
-    <div>
+    <div className=" mb-35">
       <Container>
         <SecHead title="Featured" heading="New Arrival" />
         <div className="grid grid-cols-2 gap-7.5 mt-15 ">
