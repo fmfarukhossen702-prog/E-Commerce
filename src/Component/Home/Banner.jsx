@@ -30,6 +30,7 @@ function SamplePrevArrow(props) {
 const Banner = () => {
   var settings = {
     dots: true,
+
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -66,10 +67,10 @@ const Banner = () => {
               <li> Groceries & </li>
             </ul>
           </div>
-          <div className=" w-[80%] ml-13.5 mt-10 ">
-            <Slider.default {...settings}>
+          <div className=" w-[80%]   ml-13.5 mt-10 ">
+            <Slider.default  {...settings}>
               <div className="w-full">
-                <img className="w-full  " src={banner} alt="" />
+                <img className=" h-full w-full  " src={banner} alt="" />
               </div>
               <div className="w-full">
                 <img className="w-full  " src={banner} alt="" />

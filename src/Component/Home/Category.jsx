@@ -67,7 +67,7 @@ const Category = () => {
       <Container>
         <SecHead title="Categories" heading="Browse By Category" />
 
-        <div className=" w-full  py-15 border-b border-[#00000067] ">
+        <div className=" w-full category  py-15 border-b border-[#00000067] ">
           <SliderComponent className="w-full  h-full " {...settings}>
             <div>
               <CategoryCard text={<GiSmartphone />} name="Phone" />
