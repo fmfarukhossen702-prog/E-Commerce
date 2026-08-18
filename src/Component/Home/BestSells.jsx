@@ -64,10 +64,10 @@ const BestSells = () => {
                   disCountCss="hidden"
                   image={cart}
                   title="The north coat"
-                  currentPrice="$260"
-                  regularPrice="$360"
+                  currentPrice="260"
+                  regularPrice="360"
                   rating={5}
-                  review="(65)"
+                  review="65"
                 />
               </div>
               {/* secend  */}
@@ -77,10 +77,10 @@ const BestSells = () => {
                   disCountCss="hidden"
                   image={cart1}
                   title="Gucci duffle bag"
-                  currentPrice="$960"
-                  regularPrice="$1160"
+                  currentPrice="960"
+                  regularPrice="1160"
                   rating={4.4}
-                  review="(65)"
+                  review="65"
                 />
               </div>
               {/* three  */}
@@ -90,10 +90,10 @@ const BestSells = () => {
                   disCountCss="hidden"
                   image={box}
                   title="RGB liquid CPU Cooler"
-                  currentPrice="$170"
-                  regularPrice="$260"
+                  currentPrice="170"
+                  regularPrice="260"
                   rating={3.4}
-                  review="(65)"
+                  review="65"
                 />
               </div>
               {/* four  */}
@@ -103,10 +103,10 @@ const BestSells = () => {
                   disCountCss="hidden"
                   image={table}
                   title="Small BookSelf"
-                  currentPrice="$360"
-                  regularPrice="$520"
+                  currentPrice="360"
+                  regularPrice="520"
                   rating={2.6}
-                  review="(65)"
+                  review="65"
                 />
               </div>
               {/* secend  */}
@@ -116,10 +116,10 @@ const BestSells = () => {
                   disCountCss="hidden"
                   image={cart1}
                   title="Gucci duffle bag"
-                  currentPrice="$960"
-                  regularPrice="$1160"
+                  currentPrice="960"
+                  regularPrice="1160"
                   rating={4.4}
-                  review="(65)"
+                  review="65"
                 />
               </div>
               {/* three  */}
@@ -129,10 +129,10 @@ const BestSells = () => {
                   disCountCss="hidden"
                   image={box}
                   title="RGB liquid CPU Cooler"
-                  currentPrice="$170"
-                  regularPrice="$260"
+                  currentPrice="170"
+                  regularPrice="260"
                   rating={3.4}
-                  review="(65)"
+                  review="65"
                 />
               </div>
             </SliderComponent>

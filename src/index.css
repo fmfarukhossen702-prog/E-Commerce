@@ -28,12 +28,12 @@ li.slick-active div {
 .slick-arrow.slick-next {
   @apply w-11.5 h-11.5 rounded-full bg-[#F5F5F5]
 }
-button.slick-arrow.slick-next {
+/* button.slick-arrow.slick-next {
     display: hidden;
 }
 ul.slick-dots {
     display: hidden!;
-}
+} */
 
 .slick-slide.slick-active.slick-center.slick-current {
   @apply scale-[1.2] h-full text-primary! border-primary!
@@ -42,4 +42,8 @@ ul.slick-dots {
   transform: scale(0.85);
   transition: transform 0.5s ease;
   padding: 10px
+}
+
+.bannerCss  > li {
+  @apply cursor-pointer
 }

@@ -14,11 +14,11 @@ const NavBar = () => {
           <div>
             <img src={logo} alt="" />
           </div>
-          <ul className="flex gap-12">
-            <li> Home </li>
-            <li> Contact</li>
-            <li> About</li>
-            <li> Sign Up</li>
+          <ul className="flex  gap-12">
+            <li className=" cursor-pointer " > Home </li>
+            <li className=" cursor-pointer " > Contact</li>
+            <li className=" cursor-pointer " > About</li>
+            <li className=" cursor-pointer " > Sign Up</li>
           </ul>
           <div className=" flex gap-6 items-center">
             <div className="w-60.75 rounded-sm relative ">
@@ -36,8 +36,8 @@ const NavBar = () => {
               )}
             </div>
             <div className="flex gap-4 text-[32px] ">
-              <CiHeart />
-              <PiShoppingCartThin />
+              <CiHeart className=" cursor-pointer " />
+              <PiShoppingCartThin className=" cursor-pointer " />
             </div>
           </div>
         </div>

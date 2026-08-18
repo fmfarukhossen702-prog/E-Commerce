@@ -16,7 +16,7 @@ const SliderComponent = Slider?.default ?? Slider;
 function SampleNextArrow({ onClick }) {
   return (
     <button
-      className="w-11.5 h-11.5 absolute -top-20 right-0 rounded-full  bg-[#F5F5F5] flex justify-center items-center "
+      className=" cursor-pointer  w-11.5 h-11.5 absolute -top-20 right-0 rounded-full  bg-[#F5F5F5] flex justify-center items-center "
       onClick={onClick}
     >
       <FaArrowRightLong />
@@ -27,7 +27,7 @@ function SampleNextArrow({ onClick }) {
 function SamplePrevArrow({ onClick }) {
   return (
     <button
-      className="w-11.5 h-11.5 absolute -top-20 right-15  rounded-full bg-[#F5F5F5] flex justify-center items-center  "
+      className=" cursor-pointer  w-11.5 h-11.5 absolute -top-20 right-15  rounded-full bg-[#F5F5F5] flex justify-center items-center  "
       onClick={onClick}
     >
       <FaArrowLeftLong />
@@ -61,10 +61,11 @@ const OurProduct = () => {
                 image={img1}
                 disCountCss="hidden"
                 title="Breed Dry Dog Food"
-                currentPrice="$100"
+                currentPrice="100"
                 rating={3}
-                review="(35)"
+                review="35"
                 priceRatingCss=" flex gap-2 items-center space-y-0 "
+                regularPriceCss="hidden"
               />
             </div>
             <div className="my-2 ">
@@ -72,10 +73,11 @@ const OurProduct = () => {
                 image={camera}
                 disCountCss="hidden"
                 title="CANON EOS DSLR Camera"
-                currentPrice="$360"
+                currentPrice="360"
                 rating={4}
-                review="(95)"
+                review="95"
                 priceRatingCss=" flex gap-2 items-center space-y-0 "
+                regularPriceCss="hidden"
               />
             </div>
             <div className="my-2 ">
@@ -83,10 +85,11 @@ const OurProduct = () => {
                 image={laptop}
                 disCountCss="hidden"
                 title="ASUS FHD Gaming Laptop"
-                currentPrice="$700"
+                currentPrice="700"
                 rating={5}
-                review="(325)"
+                review="325"
                 priceRatingCss=" flex gap-2 items-center space-y-0 "
+                regularPriceCss="hidden"
               />
             </div>
             <div className="my-2 ">
@@ -94,10 +97,11 @@ const OurProduct = () => {
                 image={cart}
                 disCountCss="hidden"
                 title="Breed Dry Dog Food"
-                currentPrice="$500"
+                currentPrice="500"
                 rating={3.8}
-                review="(145)"
+                review="145"
                 priceRatingCss=" flex gap-2 items-center space-y-0 "
+                regularPriceCss="hidden"
               />
             </div>
             {/* secend */}
@@ -106,10 +110,11 @@ const OurProduct = () => {
                 image={img1}
                 disCountCss="hidden"
                 title="Breed Dry Dog Food"
-                currentPrice="$100"
+                currentPrice="100"
                 rating={3}
-                review="(35)"
+                review="35"
                 priceRatingCss=" flex gap-2 items-center space-y-0 "
+                regularPriceCss="hidden"
               />
             </div>
             <div className="my-2 ">
@@ -117,10 +122,11 @@ const OurProduct = () => {
                 image={camera}
                 disCountCss="hidden"
                 title="CANON EOS DSLR Camera"
-                currentPrice="$360"
+                currentPrice="360"
                 rating={4}
-                review="(95)"
+                review="95"
                 priceRatingCss=" flex gap-2 items-center space-y-0 "
+                regularPriceCss="hidden"
               />
             </div>
             <div className="my-2 ">
@@ -128,10 +134,11 @@ const OurProduct = () => {
                 image={laptop}
                 disCountCss="hidden"
                 title="ASUS FHD Gaming Laptop"
-                currentPrice="$700"
+                currentPrice="700"
                 rating={5}
-                review="(325)"
+                review="325"
                 priceRatingCss=" flex gap-2 items-center space-y-0 "
+                regularPriceCss="hidden"
               />
             </div>
             <div className="my-2 ">
@@ -139,10 +146,11 @@ const OurProduct = () => {
                 image={cart}
                 disCountCss="hidden"
                 title="Breed Dry Dog Food"
-                currentPrice="$500"
+                currentPrice="500"
                 rating={3.8}
-                review="(145)"
+                review="145"
                 priceRatingCss=" flex gap-2 items-center space-y-0 "
+                regularPriceCss="hidden"
               />
             </div>
             {/* three  */}
@@ -151,10 +159,11 @@ const OurProduct = () => {
                 image={img1}
                 disCountCss="hidden"
                 title="Breed Dry Dog Food"
-                currentPrice="$100"
+                currentPrice="100"
                 rating={3}
-                review="(35)"
+                review="35"
                 priceRatingCss=" flex gap-2 items-center space-y-0 "
+                regularPriceCss="hidden"
               />
             </div>
             <div className="my-2 ">
@@ -162,10 +171,11 @@ const OurProduct = () => {
                 image={camera}
                 disCountCss="hidden"
                 title="CANON EOS DSLR Camera"
-                currentPrice="$360"
+                currentPrice="360"
                 rating={4}
-                review="(95)"
+                review="95"
                 priceRatingCss=" flex gap-2 items-center space-y-0 "
+                regularPriceCss="hidden"
               />
             </div>
             <div className="my-2 ">
@@ -173,10 +183,11 @@ const OurProduct = () => {
                 image={laptop}
                 disCountCss="hidden"
                 title="ASUS FHD Gaming Laptop"
-                currentPrice="$700"
+                currentPrice="700"
                 rating={5}
-                review="(325)"
+                review="325"
                 priceRatingCss=" flex gap-2 items-center space-y-0 "
+                regularPriceCss="hidden"
               />
             </div>
             <div className="my-2 ">
@@ -184,10 +195,11 @@ const OurProduct = () => {
                 image={cart}
                 disCountCss="hidden"
                 title="Breed Dry Dog Food"
-                currentPrice="$500"
+                currentPrice="500"
                 rating={3.8}
-                review="(145)"
+                review="145"
                 priceRatingCss=" flex gap-2 items-center space-y-0 "
+                regularPriceCss="hidden"
               />
             </div>
           </SliderComponent>

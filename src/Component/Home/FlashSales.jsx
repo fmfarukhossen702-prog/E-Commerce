@@ -17,7 +17,7 @@ function SampleNextArrow({ onClick }) {
   return (
     <button
       onClick={onClick}
-      className=" absolute -top-21.5 right-0 z-10 w-11 h-11 bg-[#F5F5F5] rounded-full flex justify-center items-center  "
+      className=" cursor-pointer absolute -top-21.5 right-0 z-10 w-11 h-11 bg-[#F5F5F5] rounded-full flex justify-center items-center  "
     >
       <FaArrowRight />
     </button>
@@ -28,7 +28,7 @@ function SamplePrevArrow({onClick}) {
   return (
     <button
       onClick={onClick}
-      className="  z-10 absolute -top-21.5 right-13  w-11 h-11 bg-[#F5F5F5] rounded-full flex justify-center items-center  "
+      className="  cursor-pointer z-10 absolute -top-21.5 right-13  w-11 h-11 bg-[#F5F5F5] rounded-full flex justify-center items-center  "
     >
       <FaArrowLeftLong />
     </button>
@@ -50,7 +50,7 @@ const FlashSales = () => {
     prevArrow: <SamplePrevArrow />,
     appendDots: (dots) => (
       <div
-      
+ 
       >
         <ul > {dots} </ul>
       </div>
@@ -75,100 +75,100 @@ const FlashSales = () => {
             <div>
               <Card
                 image={frame}
-                discount="-40%"
+                discount="40"
                 title="HAVIT HV-G92 Gamepad"
-                currentPrice="$120"
-                regularPrice="$160"
+                currentPrice="120"
+                regularPrice="160"
                 rating={5}
-                review="(88)"
+                review="88"
               />
             </div>
             <div>
               <Card
                 image={keyBoard}
-                discount="-35%%"
+                discount="35%"
                 title="AK-900 Wired Keyboard"
-                currentPrice="$$960"
-                regularPrice="$$1160"
+                currentPrice="960"
+                regularPrice="1160"
                 rating={4}
-                review="(75)"
+                review="75"
               />
             </div>
             <div>
               <Card
                 image={tv}
-                discount="-30%%"
+                discount="30"
                 title="IPS LCD Gaming Monitor"
-                currentPrice="$370"
-                regularPrice="$400"
+                currentPrice="370"
+                regularPrice="400"
                 rating={5}
-                review="(99)"
+                review="99"
               />
             </div>
             <div>
               <Card
                 image={chair}
-                discount="-25%"
+                discount="25"
                 title="S-Series Comfort Chair "
-                currentPrice="$375"
-                regularPrice="$400"
+                currentPrice="375"
+                regularPrice="400"
                 rating={4.7}
-                review="(99)"
+                review="99"
               />
             </div>
             <div>
               <Card
                 image={tv}
-                discount="-30%%"
+                discount="30"
                 title="IPS LCD Gaming Monitor"
-                currentPrice="$370"
-                regularPrice="$400"
+                currentPrice="370"
+                regularPrice="400"
                 rating={5}
-                review="(99)"
+                review="99"
               />
             </div>
             <div>
               <Card
                 image={chair}
-                discount="-25%"
+                discount="25"
                 title="S-Series Comfort Chair "
-                currentPrice="$375"
-                regularPrice="$400"
+                currentPrice="375"
+                regularPrice="400"
                 rating={4.7}
-                review="(99)"
+                review="99"
               />
             </div>
             <div>
               <Card
                 image={chair}
-                discount="-25%"
+                discount="25"
                 title="S-Series Comfort Chair "
-                currentPrice="$375"
-                regularPrice="$400"
+                currentPrice="375"
+                regularPrice="400"
                 rating={4.7}
-                review="(99)"
+                review="99"
               />
             </div>
             <div>
               <Card
                 image={tv}
-                discount="-30%%"
+                discount="30"
                 title="IPS LCD Gaming Monitor"
-                currentPrice="$370"
-                regularPrice="$400"
+                currentPrice="370"
+                regularPrice="400"
                 rating={5}
-                review="(99)"
+                review="99"
               />
             </div>
             <div>
               <Card
                 image={chair}
-                discount="-25%"
+                discount="25"
                 title="S-Series Comfort Chair "
-                currentPrice="$375"
-                regularPrice="$400"
+                currentPrice="375"
+                regularPrice="400"
                 rating={4.7}
-                review="(99)"
+                review="99"
               />
             </div>
           </SliderComponent>

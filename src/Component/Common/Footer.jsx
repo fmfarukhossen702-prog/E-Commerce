@@ -51,7 +51,7 @@ const Footer = () => {
               <a href="">exclusive@gmail.com</a>
             </div>
             {/* <input type="number" placeholder="+88015-88888-9999" /> */}
-            <select className=" outline-none bg-black " name="" id="">
+            <select className=" outline-none cursor-pointer selectCss  bg-black " name="" id="">
               <option value="">+88015-88888-9999</option>
               <option value="">+88015-88888-1000</option>
               <option value="">+88015-88888-1001</option>
@@ -62,13 +62,13 @@ const Footer = () => {
           <div>
             <h3 className=" text-xl font-medium mb-6 ">Account</h3>
             <ul className=" space-y-4 ">
-              <li>My Account</li>
+              <li className=" cursor-pointer " >My Account</li>
               <li>
-                <button>Login</button> / <button>Register</button>
+                <button className=" cursor-pointer " >Login</button> / <button className=" cursor-pointer " >Register</button>
               </li>
-              <li>Cart </li>
-              <li>Wishlist </li>
-              <li>Shop </li>
+              <li className=" cursor-pointer " >Cart </li>
+              <li className=" cursor-pointer " >Wishlist </li>
+              <li className=" cursor-pointer " >Shop </li>
             </ul>
           </div>
 
@@ -76,10 +76,10 @@ const Footer = () => {
           <div>
             <h3 className=" font-medium text-xl mb-6  ">Quick Link</h3>
             <ul className=" space-y-4 ">
-              <li>Privacy Policy</li>
-              <li>Terms Of Use</li>
-              <li>FAQ</li>
-              <li>Contact</li>
+              <li className=" cursor-pointer " >Privacy Policy</li>
+              <li className=" cursor-pointer " >Terms Of Use</li>
+              <li className=" cursor-pointer " >FAQ</li>
+              <li className=" cursor-pointer " >Contact</li>
             </ul>
           </div>
 
@@ -91,35 +91,32 @@ const Footer = () => {
               <div className=" w-20 h-20">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10330.450149114899!2d90.38498228385257!3d23.734335969340748!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8954649cee5%3A0x3bdcd530be93b17a!2sBangladesh%20Medical%20University%20(BMU)!5e0!3m2!1sen!2sbd!4v1786907095044!5m2!1sen!2sbd"
-                  //   width="600"
-                  //   height="450"
-                  //   style="border:0;"
-                  //   allowfullscreen=""
-                  //   loading="lazy"
-                  //   referrerpolicy="strict-origin-when-cross-origin"
-                  className="h-full w-full "
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                  className="h-full w-full cursor-pointer "
                 ></iframe>
               </div>
               <div>
-                <div>
+                <div className=" cursor-pointer " >
                   <img src={googlePlay} alt="" />
                 </div>
-                <div>
+                <div className=" cursor-pointer " >
                   <img src={appStore} alt="" />
                 </div>
               </div>
             </div>
             <ul className=" flex  items-center text-2xl! gap-6">
-              <li>
+              <li className=" cursor-pointer " >
                 <RiFacebookFill />
               </li>
-              <li>
+              <li className=" cursor-pointer " >
                 <FaTwitter />
               </li>
-              <li>
+              <li className=" cursor-pointer " >
                 <FaInstagram />
               </li>
-              <li>
+              <li className=" cursor-pointer " >
                 <FaLinkedinIn />
               </li>
             </ul>

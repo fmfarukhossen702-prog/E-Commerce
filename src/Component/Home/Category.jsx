@@ -16,7 +16,7 @@ function SampleNextArrow({ onClick }) {
   return (
     <button
       onClick={onClick}
-      className=" absolute -top-21.5 right-0 z-10 w-11 h-11 bg-[#F5F5F5] rounded-full flex justify-center items-center  "
+      className=" cursor-pointer absolute -top-21.5 right-0 z-10 w-11 h-11 bg-[#F5F5F5] rounded-full flex justify-center items-center  "
     >
       <FaArrowRight />
     </button>
@@ -27,7 +27,7 @@ function SamplePrevArrow({ onClick }) {
   return (
     <button
       onClick={onClick}
-      className="  z-10 absolute -top-21.5 right-13  w-11 h-11 bg-[#F5F5F5] rounded-full flex justify-center items-center  "
+      className=" cursor-pointer  z-10 absolute -top-21.5 right-13  w-11 h-11 bg-[#F5F5F5] rounded-full flex justify-center items-center  "
     >
       <FaArrowLeftLong />
     </button>
