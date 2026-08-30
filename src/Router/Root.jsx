@@ -3,7 +3,8 @@ import Home from '../Pages/Home'
 import { Outlet } from 'react-router'
 import Header from '../Component/Common/Header';
 import NavBar from '../Component/Common/NavBar';
-import { Footer } from 'antd/es/layout/layout';
+import Footer from '../Component/Common/Footer'
+
 
 const Root = () => {
   return (
@@ -11,7 +12,7 @@ const Root = () => {
       <Header />
       <NavBar />
       <Outlet />
-      <Footer />
+     <Footer/>
     </div>
   );
 }
