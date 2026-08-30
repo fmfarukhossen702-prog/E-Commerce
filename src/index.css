@@ -15,7 +15,7 @@
 }
 
 @utility container {
-  @apply mx-auto;
+  @apply mx-auto px-1.5 lg:px-0 
 }
 
 li.slick-active div {
