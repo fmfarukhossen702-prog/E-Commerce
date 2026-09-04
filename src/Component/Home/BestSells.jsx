@@ -43,7 +43,7 @@ const BestSells = () => {
         <ul> {dots} </ul>
       </div>
     ),
-    customPaging: (i) => <di></di>,
+    customPaging: (i) => <div></div>,
     responsive: [
       {
         breakpoint: 990,
@@ -72,100 +72,184 @@ const BestSells = () => {
     ],
   };
 
-  const [active, setActive] = useState(false)
+  const [viewAll, setViewAll] = useState(false)
 
   return (
     <div className="lg:pt-17.5 lg:pb-35 py-8 bg-white">
       <Container>
         <div className=" flex lg:flex-row flex-col gap-y-4 justify-between lg:items-end ">
           <SecHead title="This Month " heading="  Best Selling Products" />
-          <Btn  onClick={() => setActive(!active)} > View All</Btn>
+          <Btn onClick={() => setViewAll(!viewAll)}>
+            {viewAll ? " Hidden " : "View All"}
+          </Btn>
         </div>
-
-        <div className="mt-15">
-          <div className="slider-container">
-            <SliderComponent {...settings} >
-              {/* first  */}
-              <div>
-                <Card
-                  AddToCardCss="hidden"
-                  disCountCss="hidden"
-                  image={cart}
-                  title="The north coat"
-                  currentPrice="260"
-                  regularPrice="360"
-                  rating={5}
-                  review="65"
-                />
-              </div>
-              {/* secend  */}
-              <div>
-                <Card
-                  AddToCardCss="hidden"
-                  disCountCss="hidden"
-                  image={cart1}
-                  title="Gucci duffle bag"
-                  currentPrice="960"
-                  regularPrice="1160"
-                  rating={4.4}
-                  review="65"
-                />
-              </div>
-              {/* three  */}
-              <div>
-                <Card
-                  AddToCardCss="hidden"
-                  disCountCss="hidden"
-                  image={box}
-                  title="RGB liquid CPU Cooler"
-                  currentPrice="170"
-                  regularPrice="260"
-                  rating={3.4}
-                  review="65"
-                />
-              </div>
-              {/* four  */}
-              <div>
-                <Card
-                  AddToCardCss="hidden"
-                  disCountCss="hidden"
-                  image={table}
-                  title="Small BookSelf"
-                  currentPrice="360"
-                  regularPrice="520"
-                  rating={2.6}
-                  review="65"
-                />
-              </div>
-              {/* secend  */}
-              <div>
-                <Card
-                  AddToCardCss="hidden"
-                  disCountCss="hidden"
-                  image={cart1}
-                  title="Gucci duffle bag"
-                  currentPrice="960"
-                  regularPrice="1160"
-                  rating={4.4}
-                  review="65"
-                />
-              </div>
-              {/* three  */}
-              <div>
-                <Card
-                  AddToCardCss="hidden"
-                  disCountCss="hidden"
-                  image={box}
-                  title="RGB liquid CPU Cooler"
-                  currentPrice="170"
-                  regularPrice="260"
-                  rating={3.4}
-                  review="65"
-                />
-              </div>
-            </SliderComponent>
+        {viewAll ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-8 lg:mt-15 gap-y-4 ">
+            {/* first  */}
+            <div>
+              <Card
+                AddToCardCss="hidden"
+                disCountCss="hidden"
+                image={cart}
+                title="The north coat"
+                currentPrice="260"
+                regularPrice="360"
+                rating={5}
+                review="65"
+              />
+            </div>
+            {/* secend  */}
+            <div>
+              <Card
+                AddToCardCss="hidden"
+                disCountCss="hidden"
+                image={cart1}
+                title="Gucci duffle bag"
+                currentPrice="960"
+                regularPrice="1160"
+                rating={4.4}
+                review="65"
+              />
+            </div>
+            {/* three  */}
+            <div>
+              <Card
+                AddToCardCss="hidden"
+                disCountCss="hidden"
+                image={box}
+                title="RGB liquid CPU Cooler"
+                currentPrice="170"
+                regularPrice="260"
+                rating={3.4}
+                review="65"
+              />
+            </div>
+            {/* four  */}
+            <div>
+              <Card
+                AddToCardCss="hidden"
+                disCountCss="hidden"
+                image={table}
+                title="Small BookSelf"
+                currentPrice="360"
+                regularPrice="520"
+                rating={2.6}
+                review="65"
+              />
+            </div>
+            {/* secend  */}
+            <div>
+              <Card
+                AddToCardCss="hidden"
+                disCountCss="hidden"
+                image={cart1}
+                title="Gucci duffle bag"
+                currentPrice="960"
+                regularPrice="1160"
+                rating={4.4}
+                review="65"
+              />
+            </div>
+            {/* three  */}
+            <div>
+              <Card
+                AddToCardCss="hidden"
+                disCountCss="hidden"
+                image={box}
+                title="RGB liquid CPU Cooler"
+                currentPrice="170"
+                regularPrice="260"
+                rating={3.4}
+                review="65"
+              />
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="lg:mt-15 mt-8">
+            <div className="slider-container">
+              <SliderComponent {...settings}>
+                {/* first  */}
+                <div>
+                  <Card
+                    AddToCardCss="hidden"
+                    disCountCss="hidden"
+                    image={cart}
+                    title="The north coat"
+                    currentPrice="260"
+                    regularPrice="360"
+                    rating={5}
+                    review="65"
+                  />
+                </div>
+                {/* secend  */}
+                <div>
+                  <Card
+                    AddToCardCss="hidden"
+                    disCountCss="hidden"
+                    image={cart1}
+                    title="Gucci duffle bag"
+                    currentPrice="960"
+                    regularPrice="1160"
+                    rating={4.4}
+                    review="65"
+                  />
+                </div>
+                {/* three  */}
+                <div>
+                  <Card
+                    AddToCardCss="hidden"
+                    disCountCss="hidden"
+                    image={box}
+                    title="RGB liquid CPU Cooler"
+                    currentPrice="170"
+                    regularPrice="260"
+                    rating={3.4}
+                    review="65"
+                  />
+                </div>
+                {/* four  */}
+                <div>
+                  <Card
+                    AddToCardCss="hidden"
+                    disCountCss="hidden"
+                    image={table}
+                    title="Small BookSelf"
+                    currentPrice="360"
+                    regularPrice="520"
+                    rating={2.6}
+                    review="65"
+                  />
+                </div>
+                {/* secend  */}
+                <div>
+                  <Card
+                    AddToCardCss="hidden"
+                    disCountCss="hidden"
+                    image={cart1}
+                    title="Gucci duffle bag"
+                    currentPrice="960"
+                    regularPrice="1160"
+                    rating={4.4}
+                    review="65"
+                  />
+                </div>
+                {/* three  */}
+                <div>
+                  <Card
+                    AddToCardCss="hidden"
+                    disCountCss="hidden"
+                    image={box}
+                    title="RGB liquid CPU Cooler"
+                    currentPrice="170"
+                    regularPrice="260"
+                    rating={3.4}
+                    review="65"
+                  />
+                </div>
+              </SliderComponent>
+            </div>
+          </div>
+        )}
       </Container>
     </div>
   );
