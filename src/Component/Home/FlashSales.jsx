@@ -45,7 +45,7 @@ const FlashSales = () => {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 3,
-    row: 2,
+    // row: 2,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     // appendDots: (dots) => (
@@ -90,7 +90,7 @@ const FlashSales = () => {
           <CountDown />
         </div>
 
-        <div className="  w-full flashSales  my-10">
+        <div className="  w-full   my-10">
           <SliderComponent className="w-full  " {...settings}>
             <div>
               <Card

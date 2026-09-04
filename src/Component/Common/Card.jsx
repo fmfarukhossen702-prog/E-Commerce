@@ -20,7 +20,7 @@ const Card = ({
   return (
     <div className=" w-full lg:w-67.5  group h-87.5 ">
       <div className=" relative  ">
-        <div className={`h-62.5 object-cover relative overflow-hidden ${bgCssImage} `}>
+        <div className={`h-62.5 object-contain w-full relative overflow-hidden ${bgCssImage} `}>
           <img src={image} alt="" className="w-full" />
           <h3
             className={` ${AddToCardCss} w-full py-2 cursor-pointer bg-black rounded-bl-sm rounded-br-sm rounded-tr-xs rounded-tl-xs  absolute left-0 bottom-0 translate-y-full   duration-500 ease-in group-hover:translate-y-0  text-center text-white `}
