@@ -16,22 +16,22 @@ const CountDown = () => {
     <div className=" flex items-center gap-6 ">
       <div>
         <h4 className=" text-[14px] font-medium ">Days</h4>
-        <h2 className=" text-3xl font-bold "> {count.days} </h2>
+        <h2 className=" lg:text-3xl text-2xl font-semibold lg:font-bold "> {count.days} </h2>
       </div>
       <h2 className=" text-primary font-bold text-2xl  ">:</h2>
       <div className="">
         <h4 className=" text-[14px] font-medium ">Hours</h4>
-        <h2 className=" text-3xl font-bold "> {count.hours} </h2>
+        <h2 className=" lg:text-3xl text-2xl font-semibold lg:font-bold "> {count.hours} </h2>
       </div>
       <h2 className=" text-primary font-bold text-2xl  ">:</h2>
       <div className="">
         <h4 className=" text-[14px] font-medium ">Minutes</h4>
-        <h2 className=" text-3xl font-bold "> {count.minutes} </h2>
+        <h2 className=" lg:text-3xl text-2xl font-semibold lg:font-bold "> {count.minutes} </h2>
       </div>
       <h2 className=" text-primary font-bold text-2xl  ">:</h2>
       <div className="">
         <h4 className=" text-[14px] font-medium ">Seconds</h4>
-        <h2 className=" text-3xl font-bold "> {count.seconds} </h2>
+        <h2 className=" lg:text-3xl text-2xl font-semibold lg:font-bold "> {count.seconds} </h2>
       </div>
     </div>
   );

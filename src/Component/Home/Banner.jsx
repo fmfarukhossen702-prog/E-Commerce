@@ -1,10 +1,13 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import Container from "../Common/Container";
 import { IoIosArrowForward } from "react-icons/io";
 import banner from "../../assets/banner.jpg";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { BiCategory } from "react-icons/bi";
+
+
 
 function SampleNextArrow(props) {
   const {  onClick } = props;
@@ -49,12 +52,23 @@ const Banner = () => {
     ),
   };
 
+  const [active,setActive] = useState(false)
+
   return (
     <div className=" bg-white">
       <Container>
-        <div className=" flex  ">
-          <div className=" w-[20%] border-r-[0.5px] border-[#0000005a] ">
-            <ul className=" text-black bannerCss space-y-4 mt-10 pb-10  ">
+        <div
+          onClick={() => setActive(!active)}
+          className=" flex gap-4 text-xl font-semibold items-center mt-3 lg:hidden"
+        >
+          <BiCategory />
+          <h3>Category</h3>
+        </div>
+        <div className=" flex flex-col lg:flex-row  ">
+          <div
+            className={` ${active? " block" : "hidden"}  lg:w-[20%]  lg:block border-r-[0.5px] border-[#0000005a] `}
+          >
+            <ul className=" text-black bannerCss space-y-2 lg:space-y-4 lg:mt-10  my-3 lg:pb-10  ">
               <li className="flex w-full justify-between pr-2 items-center">
                 <span>Woman’s Fashion</span> <IoIosArrowForward />
               </li>
@@ -67,8 +81,8 @@ const Banner = () => {
               <li> Groceries & </li>
             </ul>
           </div>
-          <div className=" w-[80%]   ml-13.5 mt-10 ">
-            <Slider.default  {...settings}>
+          <div className=" lg:w-[80%] w-full  lg:ml-13.5 mt-3 lg:mt-10 ">
+            <Slider.default {...settings}>
               <div className="w-full">
                 <img className=" h-full w-full  " src={banner} alt="" />
               </div>

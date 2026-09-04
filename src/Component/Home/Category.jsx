@@ -16,7 +16,7 @@ function SampleNextArrow({ onClick }) {
   return (
     <button
       onClick={onClick}
-      className=" cursor-pointer absolute -top-21.5 right-0 z-10 w-11 h-11 bg-[#F5F5F5] rounded-full flex justify-center items-center  "
+      className="  cursor-pointer absolute top-1/2 -translate-y-1/2 lg:translate-0 right-3 lg:-top-21.5 lg:right-0 z-10 w-11 h-11 bg-[#F5F5F5] rounded-full flex justify-center items-center  "
     >
       <FaArrowRight />
     </button>
@@ -27,7 +27,7 @@ function SamplePrevArrow({ onClick }) {
   return (
     <button
       onClick={onClick}
-      className=" cursor-pointer  z-10 absolute -top-21.5 right-13  w-11 h-11 bg-[#F5F5F5] rounded-full flex justify-center items-center  "
+      className="  cursor-pointer  z-10 absolute top-1/2 -translate-y-1/2 lg:translate-0 left-3  lg:-top-21.5 lg:left-268  w-11 h-11 bg-[#F5F5F5] rounded-full flex justify-center items-center  "
     >
       <FaArrowLeftLong />
     </button>
@@ -45,25 +45,45 @@ const Category = () => {
     slidesToScroll: 3,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
-
     className: "center",
     centerMode: true,
     centerPadding: "0px",
     appendDots: (dots) => (
-      <div
-     
-      >
-        <ul > {dots} </ul>
+      <div>
+        <ul> {dots} </ul>
       </div>
     ),
-    customPaging: () => (
-      <div></div>
-
-    ),
+    customPaging: () => <div></div>,
+    responsive: [
+      {
+        breakpoint: 990,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 740,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 570,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
-    <div>
+    <div className="pt-8 ">
       <Container>
         <SecHead title="Categories" heading="Browse By Category" />
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "../Common/Container";
 import SecHead from "./SecHead";
 import Btn from "../Common/Btn";
@@ -44,19 +44,47 @@ const BestSells = () => {
       </div>
     ),
     customPaging: (i) => <di></di>,
+    responsive: [
+      {
+        breakpoint: 990,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 740,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 570,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
+  const [active, setActive] = useState(false)
+
   return (
-    <div className="pt-17.5 pb-35 bg-white">
+    <div className="lg:pt-17.5 lg:pb-35 py-8 bg-white">
       <Container>
-        <div className=" flex justify-between items-end ">
+        <div className=" flex lg:flex-row flex-col gap-y-4 justify-between lg:items-end ">
           <SecHead title="This Month " heading="  Best Selling Products" />
-          <Btn> View All</Btn>
+          <Btn  onClick={() => setActive(!active)} > View All</Btn>
         </div>
 
         <div className="mt-15">
           <div className="slider-container">
-            <SliderComponent {...settings}>
+            <SliderComponent {...settings} >
               {/* first  */}
               <div>
                 <Card
