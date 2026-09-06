@@ -15,7 +15,7 @@ const Card = ({
   disCountCss,
   priceRatingCss,
   regularPriceCss,
-  bgCssImage
+  bgCssImage,
 }) => {
   return (
     <div className=" w-full lg:w-67.5  group h-87.5 ">

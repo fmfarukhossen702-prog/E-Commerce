@@ -43,20 +43,7 @@ const SliderComponent = Slider?.default ?? Slider;
 const FlashSales = () => {
   const settings = {
     dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 3,
-    // row: 2,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
-    // appendDots: (dots) => (
-    //   <div>
-    //     <ul> {dots} </ul>
-    //   </div>
-    // ),
-    // customPaging: () => <div></div>,
-    responsive: [
+    infinite: true, responsive: [
       {
         breakpoint: 990,
         settings: {
@@ -82,6 +69,13 @@ const FlashSales = () => {
         },
       },
     ],
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 3,
+    // row: 2,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+   
   };
 
   return (

@@ -1,81 +1,78 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Container from "../Component/Common/Container";
-import Card from "../Component/Common/Card";
-// import cart from "../assets/Cart.png";
 import BreadCrumb from "../Component/Common/BreadCrumb";
-import Paginate from "../Component/Common/Paginate";
-import CardSkeleton from "../Component/Common/CardSkeleton";
-
+import PaginatedItems from "../Component/Common/Paginate";
+import DummyJson from "../Component/Common/DummyJson";
+import { useDispatch, useSelector, } from "react-redux";
+import { filteredProductsReducer, productReducer } from "../Redux/DataStor";
 const Shop = () => {
-  const [products, setProducts] = useState([]);
-  const [show , setShow] = useState(6)
-  const [loding , setLoding] = useState(true)
+  const [itemsPerPage, setItemsPerPage] = React.useState(6);
 
-  useEffect(() => {
-    fetch("https://dummyjson.com/products")
-      .then((res) => res.json())
-      .then((data) => setProducts(data.products))
-      .then(()=> setLoding(false))
-  }, []);
+  const category = useSelector((state) => state.dataStor.category);
+  const products = useSelector((state) => state.dataStor.products);
+  const dispatch = useDispatch();
 
+  const handleCategory = (item) => {
+    const filteredProducts = products.filter((categoryItem) => categoryItem.category === item );
+    dispatch(filteredProductsReducer(filteredProducts));
+  }
   return (
-    <div className=" mb-25">
+    <div>
       <Container>
         <BreadCrumb />
-        <div className=" flex justify-between items-center mb-7.5 ">
-          <h3 className=" text-xl font-bold ">Shop by Category</h3>
-          <div>
-            <div className="flex items-center gap-3 ">
-              <h4>Show :</h4>
-              <select
-                onChange={(e) => setShow(e.target.value)}
-                name=""
-                id=""
-                className=" px-10.75 py-1 rounded-sm border border-gray-400 "
-              >
-                <option value="6">6</option>
-                <option value="9">9</option>
-                <option value="12">12</option>
-              </select>
-            </div>
+        <div className="flex justify-between items-center mb-5">
+          <h3 className="text-lg font-semibold">Shop by Category</h3>
+          <div className="flex gap-4 items-center ">
+            <h3>show :</h3>
+            <select
+              className="border border-gray-300 rounded-sm  px-6.5 focus:outline-none focus:ring-2 focus:ring-black-500"
+              name=""
+              id=""
+              onChange={(e) => setItemsPerPage(Number(e.target.value))}
+            >
+              <option value="6">6</option>
+              <option value="9">9</option>
+              <option value="12">12</option>
+            </select>
           </div>
         </div>
-
-        <div className=" flex   ">
-          <div className=" w-[20%] -mt-10 ">
-            <ul className=" text-black bannerCss space-y-4 mt-10 pb-10  ">
-              <li className="flex w-full justify-between pr-2 items-center">
-                <span>Woman’s Fashion</span>
-              </li>
-              <li> Men’s Fashion</li>
-              <li> Electronics</li>
-              <li> Home & Lifestyle</li>
-              <li> Medicine</li>
-              <li> Sports & Outdoor</li>
-              <li> Health & Beauty</li>
-              <li> Groceries & </li>
+        <div className="grid grid-cols-12 gap-5">
+          <div className="col-span-3">
+            <h3
+              onClick={() => {
+                dispatch(productReducer(products));
+                dispatch(filteredProductsReducer([]));
+              }}
+              className="text-lg cursor-pointer font-semibold mb-4"
+            >
+              All Products
+            </h3>
+            <ul className="space-y-2">
+              {category.map((item) => {
+                return (
+                  <li
+                    className="cursor-pointer capitalize"
+                    onClick={() => handleCategory(item)}
+                    key={item.id}
+                  >
+                    {item}
+                  </li>
+                );
+              })}
+            </ul>
+            <h3 className=" mt-10 mb-5 text-lg font-semibold">Shop by Color</h3>
+            <ul className=" space-y-2 ">
+              <li><span className=" w-3 h-3 rounded-full bg-black inline-block"></span> Color 1 </li>
+              <li><span className=" w-3 h-3 rounded-full bg-[#ff1717] inline-block"></span> Color 2 </li>
+              <li><span className=" w-3 h-3 rounded-full bg-[#11ff0d] inline-block"></span> Color 3 </li>
             </ul>
           </div>
-          <div className=" w-[80%]  ">
-            <div className=" flex flex-wrap justify-between gap-y-10   ">
-             
-              {loding ? (
-                <div className="flex flex-wrap justify-between">
-                    <CardSkeleton /> 
-                    <CardSkeleton />
-                    <CardSkeleton />
-                    <CardSkeleton />
-                    <CardSkeleton />
-                    <CardSkeleton />
-
-                </div>
-              ) : (
-                <Paginate itemsPerPage={show} products={products} />
-              )}
-            </div>
+          <div className="col-span-9">
+            <PaginatedItems itemsPerPage={itemsPerPage} />
           </div>
         </div>
       </Container>
+      <DummyJson />
     </div>
   );
 };

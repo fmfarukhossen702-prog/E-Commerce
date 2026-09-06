@@ -37,7 +37,7 @@ const Footer = () => {
                   type="submit"
                   className=" right-3 absolute top-1/2 -translate-y-1/2  "
                 >
-                  <img src={send} alt />
+                  <img src={send}  />
                 </button>
               </form>
             </div>
