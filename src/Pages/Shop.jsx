@@ -1,21 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "../Component/Common/Container";
 import BreadCrumb from "../Component/Common/BreadCrumb";
 import PaginatedItems from "../Component/Common/Paginate";
 import DummyJson from "../Component/Common/DummyJson";
-import { useDispatch, useSelector, } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { filteredProductsReducer, productReducer } from "../Redux/DataStor";
+import CardSkeleton from "../Component/Common/CardSkeleton";
+import TextSkeleton from "../Component/Common/TextSkeleton";
+
+
 const Shop = () => {
   const [itemsPerPage, setItemsPerPage] = React.useState(6);
-
   const category = useSelector((state) => state.dataStor.category);
   const products = useSelector((state) => state.dataStor.products);
+  const loding = useSelector((state) => state.dataStor.loding);
   const dispatch = useDispatch();
 
   const handleCategory = (item) => {
-    const filteredProducts = products.filter((categoryItem) => categoryItem.category === item );
+    const filteredProducts = products.filter(
+      (categoryItem) => categoryItem.category === item,
+    );
     dispatch(filteredProductsReducer(filteredProducts));
-  }
+  };
   return (
     <div>
       <Container>
@@ -47,28 +53,56 @@ const Shop = () => {
             >
               All Products
             </h3>
-            <ul className="space-y-2">
-              {category.map((item) => {
-                return (
-                  <li
-                    className="cursor-pointer capitalize"
-                    onClick={() => handleCategory(item)}
-                    key={item.id}
-                  >
-                    {item}
-                  </li>
-                );
-              })}
-            </ul>
+            {loding ? (
+              <div>
+                {" "}
+                <TextSkeleton />
+              </div>
+            ) : (
+              <ul className="space-y-2">
+                {category.map((item) => {
+                  return (
+                    <li
+                      className="cursor-pointer capitalize"
+                      onClick={() => handleCategory(item)}
+                      key={item.id}
+                    >
+                      {item}
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+
             <h3 className=" mt-10 mb-5 text-lg font-semibold">Shop by Color</h3>
             <ul className=" space-y-2 ">
-              <li><span className=" w-3 h-3 rounded-full bg-black inline-block"></span> Color 1 </li>
-              <li><span className=" w-3 h-3 rounded-full bg-[#ff1717] inline-block"></span> Color 2 </li>
-              <li><span className=" w-3 h-3 rounded-full bg-[#11ff0d] inline-block"></span> Color 3 </li>
+              <li>
+                <span className=" w-3 h-3 rounded-full bg-black inline-block"></span>
+                Color 1
+              </li>
+              <li>
+                <span className=" w-3 h-3 rounded-full bg-[#ff1717] inline-block"></span>
+                Color 2
+              </li>
+              <li>
+                <span className=" w-3 h-3 rounded-full bg-[#11ff0d] inline-block"></span>
+                Color 3
+              </li>
             </ul>
           </div>
           <div className="col-span-9">
-            <PaginatedItems itemsPerPage={itemsPerPage} />
+            {loding ? (
+              <div className=" flex flex-wrap justify-between">
+                <CardSkeleton />
+                <CardSkeleton />
+                <CardSkeleton />
+                <CardSkeleton />
+                <CardSkeleton />
+                <CardSkeleton />
+              </div>
+            ) : (
+              <PaginatedItems itemsPerPage={itemsPerPage} />
+            )}
           </div>
         </div>
       </Container>

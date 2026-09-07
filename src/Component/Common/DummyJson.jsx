@@ -1,7 +1,7 @@
 
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux';
-import { categoryReducer, productReducer } from '../../Redux/DataStor';
+import { categoryReducer, lodingReducer, productReducer } from '../../Redux/DataStor';
 const DummyJson = () => {
 
     const dispatch = useDispatch();
@@ -15,6 +15,7 @@ const DummyJson = () => {
               
 
             })
+            .then(()=> dispatch(lodingReducer(false)))
     }, [dispatch])
   return (
     <div>

@@ -27,14 +27,16 @@ const NavBar = () => {
           >
             <ul className="flex lg:flex-row flex-col gap-y-3  gap-12">
               <li className=" cursor-pointer ">
-     
                 <NavLink to="/" end>
                   Home
                 </NavLink>
               </li>
               <li className=" cursor-pointer "> Contact</li>
               <li className=" cursor-pointer "> About</li>
-              <li className=" cursor-pointer "> Sign Up</li>
+              <li className=" cursor-pointer ">
+            
+                <NavLink to="/signUp" end >Sign Up</NavLink>
+              </li>
             </ul>
             <div className=" flex lg:flex-row flex-col gap-y-3  pt-4 lg:pt-0  gap-6 items-center">
               <div className="w-60.75 rounded-sm relative ">

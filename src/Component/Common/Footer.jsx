@@ -8,18 +8,23 @@ import img from '../../assets/icon-copyright.png'
 import { FaTwitter } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
+import { NavLink } from "react-router";
 
 
 const Footer = () => {
   return (
-    <div className=" pt-20 pb-6 bg-black text-white! ">
+    <div className=" lg:pt-20 pt-10 pb-6 bg-black text-white! ">
       <Container>
-        <div className=" flex justify-between ">
+        <div className=" flex lg:flex-row gap-y-5 flex-col items-center justify-between ">
           {/* one */}
           <div className=" w-54.25 ">
-            <h3 className=" text-2xl font-bold font-Inter  ">Exclusive</h3>
-            <h4 className=" text-xl font-medium my-6 ">Subscribe</h4>
-            <p className=" mb-4  ">Get 10% off your first order</p>
+            <h3 className=" text-xl lg:text-2xl font-bold font-Inter mb-2 lg:mb-0 ">
+              Exclusive
+            </h3>
+            <h4 className=" text-lg lg:text-xl font-medium my-1.50 lg:my-6 ">
+              Subscribe
+            </h4>
+            <p className=" mb-2 lg:mb-4  ">Get 10% off your first order</p>
             <div>
               {/* <input className=' w-full '  type="email" placeholder="Enter your email" /> */}
 
@@ -37,7 +42,7 @@ const Footer = () => {
                   type="submit"
                   className=" right-3 absolute top-1/2 -translate-y-1/2  "
                 >
-                  <img src={send}  />
+                  <img src={send} />
                 </button>
               </form>
             </div>
@@ -45,13 +50,17 @@ const Footer = () => {
 
           {/* two  */}
           <div className=" w-44.5 ">
-            <h3 className=" mb-6 text-xl font-medium ">Support</h3>
+            <h3 className=" my-4 lg:mb-6 text-xl font-medium ">Support</h3>
             <p>111 Bijoy sarani, Dhaka, DH 1515, Bangladesh.</p>
-            <div className=" my-4 ">
+            <div className=" my-2 lg:my-4 ">
               <a href="">exclusive@gmail.com</a>
             </div>
             {/* <input type="number" placeholder="+88015-88888-9999" /> */}
-            <select className=" outline-none cursor-pointer selectCss  bg-black " name="" id="">
+            <select
+              className=" outline-none cursor-pointer selectCss  bg-black "
+              name=""
+              id=""
+            >
               <option value="">+88015-88888-9999</option>
               <option value="">+88015-88888-1000</option>
               <option value="">+88015-88888-1001</option>
@@ -62,13 +71,23 @@ const Footer = () => {
           <div>
             <h3 className=" text-xl font-medium mb-6 ">Account</h3>
             <ul className=" space-y-4 ">
-              <li className=" cursor-pointer " >My Account</li>
+              <li className=" cursor-pointer ">My Account</li>
               <li>
-                <button className=" cursor-pointer " >Login</button> / <button className=" cursor-pointer " >Register</button>
+                <button className=" cursor-pointer ">
+                  {" "}
+                  <NavLink to="/login" end>
+                    Login
+                  </NavLink>{" "}
+                </button>{" "}
+                /{" "}
+                <button className=" cursor-pointer ">
+                  {" "}
+                  <NavLink to="/signUp" end >Register</NavLink>{" "}
+                </button>
               </li>
-              <li className=" cursor-pointer " >Cart </li>
-              <li className=" cursor-pointer " >Wishlist </li>
-              <li className=" cursor-pointer " >Shop </li>
+              <li className=" cursor-pointer ">Cart </li>
+              <li className=" cursor-pointer ">Wishlist </li>
+              <li className=" cursor-pointer ">Shop </li>
             </ul>
           </div>
 
@@ -76,10 +95,10 @@ const Footer = () => {
           <div>
             <h3 className=" font-medium text-xl mb-6  ">Quick Link</h3>
             <ul className=" space-y-4 ">
-              <li className=" cursor-pointer " >Privacy Policy</li>
-              <li className=" cursor-pointer " >Terms Of Use</li>
-              <li className=" cursor-pointer " >FAQ</li>
-              <li className=" cursor-pointer " >Contact</li>
+              <li className=" cursor-pointer ">Privacy Policy</li>
+              <li className=" cursor-pointer ">Terms Of Use</li>
+              <li className=" cursor-pointer ">FAQ</li>
+              <li className=" cursor-pointer ">Contact</li>
             </ul>
           </div>
 
@@ -91,32 +110,32 @@ const Footer = () => {
               <div className=" w-20 h-20">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10330.450149114899!2d90.38498228385257!3d23.734335969340748!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8954649cee5%3A0x3bdcd530be93b17a!2sBangladesh%20Medical%20University%20(BMU)!5e0!3m2!1sen!2sbd!4v1786907095044!5m2!1sen!2sbd"
-                    allowfullscreen=""
-                    loading="lazy"
-                    referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="strict-origin-when-cross-origin"
                   className="h-full w-full cursor-pointer "
                 ></iframe>
               </div>
               <div>
-                <div className=" cursor-pointer " >
+                <div className=" cursor-pointer ">
                   <img src={googlePlay} alt="" />
                 </div>
-                <div className=" cursor-pointer " >
+                <div className=" cursor-pointer ">
                   <img src={appStore} alt="" />
                 </div>
               </div>
             </div>
             <ul className=" flex  items-center text-2xl! gap-6">
-              <li className=" cursor-pointer " >
+              <li className=" cursor-pointer ">
                 <RiFacebookFill />
               </li>
-              <li className=" cursor-pointer " >
+              <li className=" cursor-pointer ">
                 <FaTwitter />
               </li>
-              <li className=" cursor-pointer " >
+              <li className=" cursor-pointer ">
                 <FaInstagram />
               </li>
-              <li className=" cursor-pointer " >
+              <li className=" cursor-pointer ">
                 <FaLinkedinIn />
               </li>
             </ul>
