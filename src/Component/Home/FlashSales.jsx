@@ -1,4 +1,3 @@
-import React, { Component } from "react";
 import SecHead from "./SecHead";
 import Container from "../Common/Container";
 import CountDown from "../Common/CountDown";
@@ -14,7 +13,6 @@ import Btn from "../Common/Btn";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-
 function SampleNextArrow({ onClick }) {
   return (
     <button
@@ -26,7 +24,7 @@ function SampleNextArrow({ onClick }) {
   );
 }
 
-function SamplePrevArrow({onClick}) {
+function SamplePrevArrow({ onClick }) {
   return (
     <button
       onClick={onClick}
@@ -39,29 +37,17 @@ function SamplePrevArrow({onClick}) {
 
 const SliderComponent = Slider?.default ?? Slider;
 
-
 const FlashSales = () => {
   const settings = {
     dots: false,
-    infinite: true, 
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+
     responsive: [
-      {
-        breakpoint: 990,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: false,
-        },
-      },
-      {
-        breakpoint: 740,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
-      },
       {
         breakpoint: 570,
         settings: {
@@ -69,14 +55,21 @@ const FlashSales = () => {
           slidesToScroll: 1,
         },
       },
+      {
+        breakpoint: 740,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 990,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
     ],
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 3,
-    // row: 2,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
-   
   };
 
   return (
@@ -88,7 +81,7 @@ const FlashSales = () => {
         </div>
 
         <div className="  w-full   my-10">
-          <SliderComponent className="w-full  " {...settings}>
+          <SliderComponent className="flash-sales-slider w-full" {...settings}>
             <div>
               <Card
                 image={frame}
