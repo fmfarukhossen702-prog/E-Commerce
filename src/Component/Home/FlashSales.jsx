@@ -43,7 +43,8 @@ const SliderComponent = Slider?.default ?? Slider;
 const FlashSales = () => {
   const settings = {
     dots: false,
-    infinite: true, responsive: [
+    infinite: true, 
+    responsive: [
       {
         breakpoint: 990,
         settings: {

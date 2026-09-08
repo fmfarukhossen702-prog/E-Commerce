@@ -86,11 +86,12 @@ const Login = () => {
                   onClick={() => setPasswordShow(!passwordShow)}
                   className=" absolute top-1/2 -translate-y-1/2 right-4 "
                 >
-                  {passwordShow ? (
-                    <FaRegEyeSlash className="" />
-                  ) : (
-                    <IoEyeOutline />
-                  )}
+                  {password &&
+                    (passwordShow ? (
+                      <FaRegEyeSlash className="" />
+                    ) : (
+                      <IoEyeOutline />
+                    ))}
                 </div>
               </div>
               <p className=" h-9 text-[12px] text-red-600 ">

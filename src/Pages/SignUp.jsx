@@ -4,6 +4,8 @@ import banner from "../assets/SignUpBanner.png";
 import Btn from "../Component/Common/Btn";
 import iconGoogle from "../assets/IconGoogle.png";
 import { NavLink } from "react-router";
+import { FaRegEyeSlash } from "react-icons/fa6";
+import { IoEyeOutline } from "react-icons/io5";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -12,7 +14,7 @@ const SignUp = () => {
   const [passwordError, setPasswordError] = useState("");
   const [passwordRuleActive, setPasswordRuleActive] = useState(false);
   //  const [passwordShow, setPasswordShow] = useState(false);
-
+  const [passwordShow, setPasswordShow] = useState(false);
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const passwordRegex =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&])[A-Za-z\d@.#$!%*?&]{8,15}$/;
@@ -79,14 +81,28 @@ const SignUp = () => {
                 className="  placeholder:text-[13px]    w-full px-1 py-1 border-b border-[#000000ba]  "
               />
               <p className=" h-5 text-red-600 text-[12px] "> {emailError} </p>
-              <input
-                type="password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-                className=" placeholder:text-[12px]    w-full px-1 py-1 border-b border-[#000000ba]  "
-              />
+              <div className="relative">
+                <input
+                  type="password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Password"
+                  className=" placeholder:text-[12px]    w-full px-1 py-1 border-b border-[#000000ba]  "
+                />
+                <div
+                  onClick={() => setPasswordShow(!passwordShow)}
+                  className=" absolute top-1/2 -translate-y-1/2 right-4 "
+                >
+                  {password &&
+                    (passwordShow ? (
+                      <FaRegEyeSlash className="" />
+                    ) : (
+                      <IoEyeOutline />
+                    ))}
+                </div>
+              </div>
+
               <p className=" h-9 text-red-600 text-[12px] "> {passwordError}</p>
               <div className="max-h-40 space-y-2 overflow-hidden">
                 {passwordRuleActive && (
@@ -138,13 +154,11 @@ const SignUp = () => {
                     </li>
                   </ul>
                 )}
-                 <Btn onClick={handleClick} className=" w-full">
-                {" "}
-                Create Account
-              </Btn>
+                <Btn onClick={handleClick} className=" w-full">
+                  {" "}
+                  Create Account
+                </Btn>
               </div>
-
-             
             </form>
             <Btn className=" w-full bg-white flex gap-3 items-center justify-center text-black border whitespace-nowrap ">
               <div>
