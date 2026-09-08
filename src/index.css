@@ -42,6 +42,9 @@ li.slick-active div {
 .bannerCss  > li {
   @apply cursor-pointer
 }
- .slick-slide{
-  @apply flex! justify-center
+ .slick-slide > div{
+  @apply w-full
 }
+ /* .slick-slide{
+  @apply flex! justify-center
+} */
