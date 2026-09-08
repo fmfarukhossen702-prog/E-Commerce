@@ -83,7 +83,7 @@ const SignUp = () => {
               <p className=" h-5 text-red-600 text-[12px] "> {emailError} </p>
               <div className="relative">
                 <input
-                  type="password"
+                  type={passwordShow ? "text"  :  "password" }
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
