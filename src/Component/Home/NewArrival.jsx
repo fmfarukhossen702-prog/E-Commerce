@@ -16,7 +16,7 @@ const NewArrival = () => {
     <div className=" mb-35">
       <Container>
         <SecHead title="Featured" heading="New Arrival" />
-        <div className="grid grid-cols-2 gap-7.5 mt-15 ">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-7.5 mt-15 ">
           {/* first  */}
           <div className=" col-span-1 relative rounded-sm ">
             <ArrivalCard
@@ -27,7 +27,7 @@ const NewArrival = () => {
             />
           </div>
           {/* secend  */}
-          <div className=" col-span-1 grid grid-rows-2 gap-7.5 ">
+          <div className=" col-span-1 grid grid-rows-2 gap-3 lg:gap-7.5 ">
             <div className=" row-span-1 relative ">
               <div>
                 <ArrivalCard
@@ -39,7 +39,7 @@ const NewArrival = () => {
                 />
               </div>
             </div>
-            <div className=" row-span-1 grid grid-cols-2  ">
+            <div className=" row-span-1 grid gap-1 grid-cols-2  ">
               <div className=" col-span-1  relative ">
                 <ArrivalCard
                   className=" bottom-6 left-6"
@@ -51,7 +51,7 @@ const NewArrival = () => {
               </div>
               <div className=" col-span-1 relative ">
                 <ArrivalCard
-                  className=" bottom-6 left-6"
+                  className=" bottom-2 lg:bottom-6 left-2 lg:left-6"
                   image={img4}
                   title="Perfume"
                   heading="GUCCI INTENSE OUD EDP"
@@ -61,7 +61,7 @@ const NewArrival = () => {
             </div>
           </div>
         </div>
-        <div className=" flex justify-between mt-35 ">
+        <div className=" grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-y-3 justify-between  mt-35 ">
           <ArrivalCardTwo
             image={delivery}
             title="FREE AND FAST DELIVERY"
@@ -72,11 +72,13 @@ const NewArrival = () => {
             title="24/7 CUSTOMER SERVICE"
             heading="Friendly 24/7 customer support"
           />
-          <ArrivalCardTwo
-            image={img6}
-            title="MONEY BACK GUARANTEE"
-            heading="We reurn money within 30 days"
-          />
+          <div >
+            <ArrivalCardTwo
+              image={img6}
+              title="MONEY BACK GUARANTEE"
+              heading="We reurn money within 30 days"
+            />
+          </div>
         </div>
       </Container>
     </div>
