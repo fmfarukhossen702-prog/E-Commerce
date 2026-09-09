@@ -48,6 +48,26 @@ const OurProduct = () => {
        slidesPerRow: 2,
        nextArrow: <SampleNextArrow />,
        prevArrow: <SamplePrevArrow />,
+       responsive: [
+         {
+           breakpoint: 740,
+           settings: {
+             slidesToShow: 1,
+             slidesToScroll: 1,
+             rows: 2,
+             slidesPerRow: 2,
+           },
+         },
+         {
+           breakpoint: 570,
+           settings: {
+             slidesToShow: 1,
+             slidesToScroll: 1,
+             rows: 4,
+             slidesPerRow: 1,
+           },
+         },
+       ],
      };
 
   return (

@@ -42,17 +42,12 @@ li.slick-active div {
 .bannerCss  > li {
   @apply cursor-pointer
 }
- .slick-slide > div{
-@apply w-full
+
+.slick-slide > div {
+  @apply w-full;
 }
 
-.flash-sales-slider .slick-slide {
-  min-width: 0;
-}
 
-.flash-sales-slider .slick-slide > div {
-  height: 100%;
-}
  /* .slick-slide{
   @apply flex! justify-center
 } */

@@ -42,12 +42,31 @@ const FlashSales = () => {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 4,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
 
     responsive: [
+      {
+        breakpoint: 3000,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 4,
+        },
+      },
+      {
+        breakpoint: 990,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+        },
+      },
+      {
+        breakpoint: 740,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
       {
         breakpoint: 570,
         settings: {
@@ -55,27 +74,6 @@ const FlashSales = () => {
           slidesToScroll: 1,
         },
       },
-      {
-        breakpoint: 740,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 990,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        },
-      },
-      // {
-      //   breakpoint: 1140,
-      //   settings: {
-      //     slidesToShow: 4,
-      //     slidesToScroll: 4,
-      //   },
-      // },
     ],
   };
 
