@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import Container from "../Common/Container";
 import SecHead from "./SecHead";
@@ -11,7 +11,6 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import { FaArrowLeftLong } from "react-icons/fa6";
 
 const SliderComponent = Slider?.default ?? Slider;
-
 
 function SampleNextArrow({ onClick }) {
   return (
@@ -36,46 +35,57 @@ function SamplePrevArrow({ onClick }) {
 }
 
 const OurProduct = () => {
+  const sliderContainerRef = useRef(null);
+  const [sliderLayout, setSliderLayout] = useState({
+    slidesToShow: 1,
+    rows: 4,
+    slidesPerRow: 1,
+  });
 
-     const settings = {
-      //     className: "center  ",
-      //  centerMode: true,
-       infinite: true,
-       centerPadding: "0px",
-       slidesToShow: 2,
-       speed: 500,
-       rows: 2,
-       slidesPerRow: 2,
-       nextArrow: <SampleNextArrow />,
-       prevArrow: <SamplePrevArrow />,
-       responsive: [
-         {
-           breakpoint: 740,
-           settings: {
-             slidesToShow: 1,
-             slidesToScroll: 1,
-             rows: 2,
-             slidesPerRow: 2,
-           },
-         },
-         {
-           breakpoint: 570,
-           settings: {
-             slidesToShow: 1,
-             slidesToScroll: 1,
-             rows: 4,
-             slidesPerRow: 1,
-           },
-         },
-       ],
-     };
+  useEffect(() => {
+    const sliderContainer = sliderContainerRef.current;
+
+    if (!sliderContainer) return undefined;
+
+    const updateSliderLayout = () => {
+      const width = sliderContainer.clientWidth;
+
+      setSliderLayout(
+        width < 570
+          ? { slidesToShow: 1, rows: 4, slidesPerRow: 1 }
+          : width < 740
+            ? { slidesToShow: 1, rows: 2, slidesPerRow: 2 }
+            : { slidesToShow: 2, rows: 2, slidesPerRow: 2 },
+      );
+    };
+
+    updateSliderLayout();
+
+    const resizeObserver = new ResizeObserver(updateSliderLayout);
+    resizeObserver.observe(sliderContainer);
+
+    return () => resizeObserver.disconnect();
+  }, []);
+
+  const settings = {
+    //     className: "center  ",
+    //  centerMode: true,
+    infinite: true,
+    centerPadding: "0px",
+    slidesToShow: sliderLayout.slidesToShow,
+    speed: 500,
+    rows: sliderLayout.rows,
+    slidesPerRow: sliderLayout.slidesPerRow,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+  };
 
   return (
     <div className=" pt-17.5 pb-15 bg-white  ">
       <Container>
         <SecHead title="Our Products " heading="Explore Our Products" />
-        <div className="mt-10  ">
-          <SliderComponent className="w-full  " {...settings}>
+        <div ref={sliderContainerRef} className="mt-10">
+          <SliderComponent className="our-products-slider w-full" {...settings}>
             <div className="my-2 ">
               <Card
                 image={img1}

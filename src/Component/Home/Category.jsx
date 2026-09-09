@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { useEffect, useRef, useState } from "react";
 import Container from "../Common/Container";
 import SecHead from "./SecHead";
 import CategoryCard from "../Common/CategoryCard";
@@ -16,7 +16,7 @@ function SampleNextArrow({ onClick }) {
   return (
     <button
       onClick={onClick}
-      className="  cursor-pointer absolute top-1/2 -translate-y-1/2 lg:translate-0 right-3 lg:-top-21.5 lg:right-0 z-10 w-11 h-11 bg-[#F5F5F5] rounded-full flex justify-center items-center  "
+      className="  cursor-pointer absolute   -top-21.5 right-0 z-10 w-11 h-11 bg-[#F5F5F5] rounded-full hidden lg:flex justify-center items-center  "
     >
       <FaArrowRight />
     </button>
@@ -27,7 +27,7 @@ function SamplePrevArrow({ onClick }) {
   return (
     <button
       onClick={onClick}
-      className="  cursor-pointer  z-10 absolute top-1/2 -translate-y-1/2 lg:translate-0 left-3  lg:-top-21.5 lg:left-268  w-11 h-11 bg-[#F5F5F5] rounded-full flex justify-center items-center  "
+      className="  cursor-pointer  z-10 absolute -top-21.5 left-268  w-11 h-11 bg-[#F5F5F5] rounded-full hidden lg:flex justify-center items-center  "
     >
       <FaArrowLeftLong />
     </button>
@@ -37,96 +37,47 @@ function SamplePrevArrow({ onClick }) {
 const SliderComponent = Slider?.default ?? Slider;
 
 const Category = () => {
-  // const settings = {
-  //   dots: true,
-  //   infinite: true,
-  //   speed: 200,
-  //   nextArrow: <SampleNextArrow />,
-  //   prevArrow: <SamplePrevArrow />,
-  //   className: "center",
-  //   centerMode: true,
-  //   centerPadding: "0px",
-  //   appendDots: (dots) => (
-  //     <div>
-  //       <ul> {dots} </ul>
-  //     </div>
-  //   ),
-  //   customPaging: () => <div></div>,
-  //   responsive: [
-  //     {
-  //       breakpoint: 2000,
-  //       settings: {
-  //         slidesToShow: 6,
-  //         slidesToScroll: 6,
-  //       },
-  //     },
-  //     {
-  //       breakpoint: 990,
-  //       settings: {
-  //         slidesToShow: 3,
-  //         slidesToScroll: 3,
-  //       },
-  //     },
-  //     {
-  //       breakpoint: 740,
-  //       settings: {
-  //         slidesToShow: 2,
-  //         slidesToScroll: 2,
-  //       },
-  //     },
-  //     {
-  //       breakpoint: 570,
-  //       settings: {
-  //         slidesToShow: 1,
-  //         slidesToScroll: 2,
-  //       },
-  //     },
-  //   ],
-  // };
+   const sliderContainerRef = useRef(null);
+   const [slidesToShow, setSlidesToShow] = useState(1);
+
+  useEffect(() => {
+     const sliderContainer = sliderContainerRef.current;
+
+     if (!sliderContainer) return undefined;
+
+     const updateSlidesToShow = () => {
+       const width = sliderContainer.clientWidth;
+
+      setSlidesToShow(width < 570 ? 1 : width < 740 ? 2 : width < 990 ? 3 : 6);
+     };
+
+     updateSlidesToShow();
+
+     const resizeObserver = new ResizeObserver(updateSlidesToShow);
+     resizeObserver.observe(sliderContainer);
+
+     return () => resizeObserver.disconnect();
+   }, []);
+
  const settings = {
    dots: false,
    infinite: true,
    speed: 500,
+   slidesToShow,
+   slidesToScroll: slidesToShow,
    nextArrow: <SampleNextArrow />,
    prevArrow: <SamplePrevArrow />,
 
-   responsive: [
-     {
-       breakpoint: 1500,
-       settings: {
-         slidesToShow: 4,
-         slidesToScroll: 4,
-       },
-     },
-     {
-       breakpoint: 990,
-       settings: {
-         slidesToShow: 3,
-         slidesToScroll: 3,
-       },
-     },
-     {
-       breakpoint: 740,
-       settings: {
-         slidesToShow: 2,
-         slidesToScroll: 2,
-       },
-     },
-     {
-       breakpoint: 570,
-       settings: {
-         slidesToShow: 1,
-         slidesToScroll: 1,
-       },
-     },
-   ],
  };
   return (
     <div className="pt-8 ">
       <Container>
         <SecHead title="Categories" heading="Browse By Category" />
 
-        <div className=" w-full category  py-15 border-b border-[#00000067] ">
+        <div
+          ref={sliderContainerRef}
+          className="w-full category py-15 border-b border-[#00000067]"
+        >
           <SliderComponent className="w-full  h-full " {...settings}>
             <div>
               <CategoryCard text={<GiSmartphone />} name="Phone" />

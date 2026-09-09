@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Container from "../Common/Container";
 import SecHead from "./SecHead";
 import Btn from "../Common/Btn";
@@ -12,25 +12,43 @@ import Slider from "react-slick";
 const SliderComponent = Slider?.default ?? Slider;
 function SampleNextArrow() {
   // const { } = props;
-  return (
-    <div/>
-  );
+  return <div />;
 }
 
 function SamplePrevArrow() {
   // const { } = props;
-  return (
-    <div />
-  );
+  return <div />;
 }
 
 const BestSells = () => {
+  const sliderContainerRef = useRef(null);
+  const [slidesToShow, setSlidesToShow] = useState(1);
+
+  useEffect(() => {
+    const sliderContainer = sliderContainerRef.current;
+
+    if (!sliderContainer) return undefined;
+
+    const updateSlidesToShow = () => {
+      const width = sliderContainer.clientWidth;
+
+      setSlidesToShow(width < 570 ? 1 : width < 740 ? 2 : width < 990 ? 3 : 4);
+    };
+
+    updateSlidesToShow();
+
+    const resizeObserver = new ResizeObserver(updateSlidesToShow);
+    resizeObserver.observe(sliderContainer);
+
+    return () => resizeObserver.disconnect();
+  }, []);
+
   const settings = {
     dots: true,
     infinite: true,
     // speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 3,
+    slidesToShow,
+    slidesToScroll: slidesToShow,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     // autoplay: true,
@@ -43,36 +61,10 @@ const BestSells = () => {
         <ul> {dots} </ul>
       </div>
     ),
-    customPaging: (i) => <div></div>,
-    responsive: [
-      {
-        breakpoint: 990,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: false,
-        },
-      },
-      {
-        breakpoint: 740,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 570,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
+    customPaging: () => <div></div>,
   };
 
-  const [viewAll, setViewAll] = useState(false)
+  const [viewAll, setViewAll] = useState(false);
 
   return (
     <div className="lg:pt-17.5 lg:pb-35 py-8 bg-white">
@@ -166,8 +158,8 @@ const BestSells = () => {
           </div>
         ) : (
           <div className="lg:mt-15 mt-8">
-            <div className="slider-container">
-              <SliderComponent {...settings}>
+            <div ref={sliderContainerRef} className="slider-container">
+              <SliderComponent className="best-sells-slider" {...settings}>
                 {/* first  */}
                 <div>
                   <Card
