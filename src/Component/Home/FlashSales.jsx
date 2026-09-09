@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import SecHead from "./SecHead";
 import Container from "../Common/Container";
 import CountDown from "../Common/CountDown";
@@ -38,43 +39,36 @@ function SamplePrevArrow({ onClick }) {
 const SliderComponent = Slider?.default ?? Slider;
 
 const FlashSales = () => {
+  const sliderContainerRef = useRef(null);
+  const [slidesToShow, setSlidesToShow] = useState(1);
+
+  useEffect(() => {
+    const sliderContainer = sliderContainerRef.current;
+
+    if (!sliderContainer) return undefined;
+
+    const updateSlidesToShow = () => {
+      const width = sliderContainer.clientWidth;
+
+      setSlidesToShow(width < 570 ? 1 : width < 740 ? 2 : width < 990 ? 3 : 4);
+    };
+
+    updateSlidesToShow();
+
+    const resizeObserver = new ResizeObserver(updateSlidesToShow);
+    resizeObserver.observe(sliderContainer);
+
+    return () => resizeObserver.disconnect();
+  }, []);
+
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
+    slidesToShow,
+    slidesToScroll: slidesToShow,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
-
-    responsive: [
-      {
-        breakpoint: 3000,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 4,
-        },
-      },
-      {
-        breakpoint: 990,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-        },
-      },
-      {
-        breakpoint: 740,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: 570,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
   };
 
   return (
@@ -85,7 +79,7 @@ const FlashSales = () => {
           <CountDown />
         </div>
 
-        <div className="  w-full   my-10">
+        <div ref={sliderContainerRef} className="w-full my-10">
           <SliderComponent className="flash-sales-slider w-full" {...settings}>
             <div>
               <Card

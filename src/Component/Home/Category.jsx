@@ -37,51 +37,90 @@ function SamplePrevArrow({ onClick }) {
 const SliderComponent = Slider?.default ?? Slider;
 
 const Category = () => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 200,
-    slidesToShow: 6,
-    slidesToScroll: 3,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
-    className: "center",
-    centerMode: true,
-    centerPadding: "0px",
-    appendDots: (dots) => (
-      <div>
-        <ul> {dots} </ul>
-      </div>
-    ),
-    customPaging: () => <div></div>,
-    responsive: [
-      {
-        breakpoint: 990,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: false,
-        },
-      },
-      {
-        breakpoint: 740,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 570,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
+  // const settings = {
+  //   dots: true,
+  //   infinite: true,
+  //   speed: 200,
+  //   nextArrow: <SampleNextArrow />,
+  //   prevArrow: <SamplePrevArrow />,
+  //   className: "center",
+  //   centerMode: true,
+  //   centerPadding: "0px",
+  //   appendDots: (dots) => (
+  //     <div>
+  //       <ul> {dots} </ul>
+  //     </div>
+  //   ),
+  //   customPaging: () => <div></div>,
+  //   responsive: [
+  //     {
+  //       breakpoint: 2000,
+  //       settings: {
+  //         slidesToShow: 6,
+  //         slidesToScroll: 6,
+  //       },
+  //     },
+  //     {
+  //       breakpoint: 990,
+  //       settings: {
+  //         slidesToShow: 3,
+  //         slidesToScroll: 3,
+  //       },
+  //     },
+  //     {
+  //       breakpoint: 740,
+  //       settings: {
+  //         slidesToShow: 2,
+  //         slidesToScroll: 2,
+  //       },
+  //     },
+  //     {
+  //       breakpoint: 570,
+  //       settings: {
+  //         slidesToShow: 1,
+  //         slidesToScroll: 2,
+  //       },
+  //     },
+  //   ],
+  // };
+ const settings = {
+   dots: false,
+   infinite: true,
+   speed: 500,
+   nextArrow: <SampleNextArrow />,
+   prevArrow: <SamplePrevArrow />,
 
+   responsive: [
+     {
+       breakpoint: 1500,
+       settings: {
+         slidesToShow: 4,
+         slidesToScroll: 4,
+       },
+     },
+     {
+       breakpoint: 990,
+       settings: {
+         slidesToShow: 3,
+         slidesToScroll: 3,
+       },
+     },
+     {
+       breakpoint: 740,
+       settings: {
+         slidesToShow: 2,
+         slidesToScroll: 2,
+       },
+     },
+     {
+       breakpoint: 570,
+       settings: {
+         slidesToShow: 1,
+         slidesToScroll: 1,
+       },
+     },
+   ],
+ };
   return (
     <div className="pt-8 ">
       <Container>
