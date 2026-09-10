@@ -52,6 +52,10 @@ li.slick-active div {
   @apply px-3;
 }
 
+.product-rating .ant-rate-star {
+  font-size: 14px !important;
+}
+
 .slick-slide {
   @apply px-2;
 }

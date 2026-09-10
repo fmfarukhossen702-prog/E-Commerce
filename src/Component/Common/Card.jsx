@@ -2,6 +2,7 @@ import React from "react";
 import { Rate } from "antd";
 import { CiHeart } from "react-icons/ci";
 import { IoEyeOutline } from "react-icons/io5";
+import { useNavigate } from "react-router";
 
 const Card = ({
   discount,
@@ -16,11 +17,22 @@ const Card = ({
   priceRatingCss,
   regularPriceCss,
   bgCssImage,
+  id
 }) => {
+  let navigate = useNavigate();
+  const handleProduDetails = () => {
+    navigate(`/productDetails/${id}`);
+  };
+
   return (
-    <div className=" w-full lg:w-67.5  group h-87.5 ">
+    <div
+      onClick={handleProduDetails}
+      className=" w-full lg:w-67.5  group h-87.5 "
+    >
       <div className=" relative  ">
-        <div className={`h-62.5 object-contain w-full relative overflow-hidden ${bgCssImage} `}>
+        <div
+          className={`h-62.5 object-contain w-full relative overflow-hidden ${bgCssImage} `}
+        >
           <img src={image} alt="" className="w-full" />
           <h3
             className={` ${AddToCardCss} w-full py-2 cursor-pointer bg-black rounded-bl-sm rounded-br-sm rounded-tr-xs rounded-tl-xs  absolute left-0 bottom-0 translate-y-full   duration-500 ease-in group-hover:translate-y-0  text-center text-white `}
@@ -54,7 +66,7 @@ const Card = ({
         </div>
         <div className=" font-medium flex gap-4 items-center">
           <Rate allowHalf value={rating} />
-          <h5 className="  text-[#00000060] "> ({review}) </h5>
+          <h5 className="text-sm text-[#00000060]"> ({review}) </h5>
         </div>
       </div>
     </div>

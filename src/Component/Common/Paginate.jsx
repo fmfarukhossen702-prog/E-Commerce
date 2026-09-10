@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import ReactPaginateModule from "react-paginate";
 import { useSelector } from "react-redux";
 import Card from "./Card";
@@ -10,7 +10,7 @@ const Paginate = ({ itemsPerPage }) => {
   const products = useSelector((state) => state.dataStor.products);
   const filteredProducts = useSelector((state) => state.dataStor.filteredProducts);
   const items = filteredProducts.length > 0 ? filteredProducts : products;
-
+//  console.log(products)
 
   function Items({ currentItems }) {
     return (
@@ -19,6 +19,7 @@ const Paginate = ({ itemsPerPage }) => {
           currentItems.map((items) => (
             <Card
               key={items.id}
+              id={items.id}
               // item={item}1f040462
               bgCssImage="bg-[#8f81810e]"
               title={items.title}
@@ -27,6 +28,8 @@ const Paginate = ({ itemsPerPage }) => {
               currentPrice={
                 items.price - (items.price * items.discountPercentage) / 100
               }
+              regularPrice={items.price}
+              rating={items.rating}
             />
           ))}
       </>

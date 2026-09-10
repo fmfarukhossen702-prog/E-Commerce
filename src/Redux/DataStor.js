@@ -20,7 +20,7 @@ export const DataStor = createSlice({
   },
   reducers: {
     productReducer: (state, action) => {
-      state.products = action.payload;
+      state.products = action.payload; 
     },
     categoryReducer: (state, action) => {
       state.category = action.payload;

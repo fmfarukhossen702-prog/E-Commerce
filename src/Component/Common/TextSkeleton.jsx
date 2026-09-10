@@ -37,9 +37,7 @@ const TextSkeleton = () => {
         <div class="block h-2 mb-2 font-sans text-base antialiased font-light leading-relaxed bg-gray-300 rounded-full text-inherit w-full">
           &nbsp;
         </div>
-        <div class="block h-2 mb-2 font-sans text-base antialiased font-light leading-relaxed bg-gray-300 rounded-full text-inherit w-full">
-          &nbsp;
-        </div>
+    
       </div>
     </div>
   );
