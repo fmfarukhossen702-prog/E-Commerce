@@ -20,7 +20,7 @@ function SampleNextArrow({ onClick }) {
       type="button"
       aria-label="Next products"
       onClick={onClick}
-      className="hidden cursor-pointer absolute -top-21.5 right-0 z-10 w-11 h-11 bg-[#F5F5F5] rounded-full lg:flex justify-center items-center"
+      className="flex cursor-pointer absolute -top-21.5 right-0 z-10 w-11 h-11 bg-[#F5F5F5] rounded-full justify-center items-center"
     >
       <FaArrowRight />
     </button>
@@ -33,7 +33,7 @@ function SamplePrevArrow({ onClick }) {
       type="button"
       aria-label="Previous products"
       onClick={onClick}
-      className="hidden cursor-pointer absolute -top-21.5 right-13 z-10 w-11 h-11 bg-[#F5F5F5] rounded-full lg:flex justify-center items-center"
+      className="flex cursor-pointer absolute -top-21.5 right-13 z-10 w-11 h-11 bg-[#F5F5F5] rounded-full justify-center items-center"
     >
       <FaArrowLeftLong />
     </button>
@@ -68,9 +68,12 @@ const BestSells = () => {
     infinite: true,
     speed: 500,
     slidesToShow,
-    slidesToScroll: slidesToShow,
+    slidesToScroll: 1,
     swipe: true,
+    swipeToSlide: true,
     touchMove: true,
+    touchThreshold: 8,
+    waitForAnimate: false,
     draggable: true,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
@@ -106,8 +109,8 @@ const BestSells = () => {
         </div>
        
           <div className="lg:mt-25 mt-8">
-            <div ref={sliderContainerRef} className="slider-container">
-              <SliderComponent className="best-sells-slider" {...settings}>
+            <div ref={sliderContainerRef} className="slider-container w-full touch-pan-y">
+              <SliderComponent className="best-sells-slider w-full" {...settings}>
                 {Array.isArray(products) && products.map((items, index) => {
                     return (
                       <div key={items?.id ?? index}>
