@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Container from "../Component/Common/Container";
 import BreadCrumb from "../Component/Common/BreadCrumb";
 import PaginatedItems from "../Component/Common/Paginate";
-import DummyJson from "../Component/Common/DummyJson";
 import { useDispatch, useSelector } from "react-redux";
 import { filteredProductsReducer, productReducer } from "../Redux/DataStor";
 import CardSkeleton from "../Component/Common/CardSkeleton";
@@ -106,7 +105,6 @@ const Shop = () => {
           </div>
         </div>
       </Container>
-      <DummyJson />
     </div>
   );
 };

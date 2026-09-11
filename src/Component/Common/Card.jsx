@@ -3,6 +3,8 @@ import { Rate } from "antd";
 import { CiHeart } from "react-icons/ci";
 import { IoEyeOutline } from "react-icons/io5";
 import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { cardReducer } from "../../Redux/DataStor";
 
 const Card = ({
   discount,
@@ -17,28 +19,47 @@ const Card = ({
   priceRatingCss,
   regularPriceCss,
   bgCssImage,
-  id
+  id,
+  productDetails,
 }) => {
   let navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const itemData = productDetails ?? {
+    id,
+    title,
+    thumbnail: image,
+    price: Number(regularPrice ?? currentPrice ?? 0),
+    discountPercentage: Number(discount ?? 0),
+    brand: title,
+    rating,
+    reviews: [],
+  };
+
   const handleProduDetails = () => {
-    navigate(`/productDetails/${id}`);
+    if (itemData?.id) navigate(`/productDetails/${itemData.id}`);
+  };
+
+  const handleCardItem = () => {
+    if (!itemData?.id) return;
+    dispatch(cardReducer(itemData));
   };
 
   return (
     <div
-      onClick={handleProduDetails}
+  
       className=" w-full lg:w-67.5  group h-87.5 "
     >
       <div className=" relative  ">
         <div
           className={`h-62.5 object-contain w-full relative overflow-hidden ${bgCssImage} `}
         >
-          <img src={image} alt="" className="w-full" />
-          <h3
+          <img onClick={handleProduDetails}  src={image} alt="" className="w-full" />
+          <button onClick={handleCardItem}
             className={` ${AddToCardCss} w-full py-2 cursor-pointer bg-black rounded-bl-sm rounded-br-sm rounded-tr-xs rounded-tl-xs  absolute left-0 bottom-0 translate-y-full   duration-500 ease-in group-hover:translate-y-0  text-center text-white `}
           >
             Add To Cart
-          </h3>
+          </button>
         </div>
         <div
           className={` ${disCountCss}  w-13.75 h-6.5 rounded-sm absolute top-3 left-3 bg-primary flex items-center justify-center text-[12px] `}

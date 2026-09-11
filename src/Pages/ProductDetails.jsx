@@ -9,6 +9,8 @@ import returnn from "../assets/Icon-return.png";
 import { useParams } from "react-router";
 import SkeletonImage from "../Component/Common/SkeletonImage";
 import TextSkeleton from "../Component/Common/TextSkeleton";
+import { useDispatch } from "react-redux";
+import { cardReducer } from "../Redux/DataStor";
 
 const ProductDetails = () => {
   const [productDetails, setProductDetails] = useState({});
@@ -17,17 +19,22 @@ const ProductDetails = () => {
   const { id } = useParams();
   // console.log(id)
 
+  const dispatch = useDispatch();
   useEffect(() => {
     fetch(`https://dummyjson.com/products/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        (setProductDetails(data), setProductImages(data.images));
+        setProductDetails(data);
+        setProductImages(Array.isArray(data.images) ? data.images : []);
       })
-      .catch(() => setProductDetails({}))
+      .catch(() => {
+        setProductDetails({});
+        setProductImages([]);
+      })
       .finally(() => setLoding(false));
   }, [id]);
 
-  console.log(productDetails);
+  // console.log(productDetails);
   return (
     <div className="pb-25">
       <Container>
@@ -46,6 +53,7 @@ const ProductDetails = () => {
                 {productImages.map((image) => {
                   return (
                     <img
+                      key={image}
                       className="w-42.5 h-34.5 bg-[#00000009] rounded-sm "
                       src={image}
                     />
@@ -159,7 +167,10 @@ const ProductDetails = () => {
                   </div>
                 </li>
                 <li>
-                  <Btn className="h-11 flex justify-center items-center text-sm ">
+                  <Btn
+                    onClick={() => dispatch(cardReducer(productDetails))}
+                    className="h-11 flex justify-center items-center text-sm"
+                  >
                     Buy Now
                   </Btn>
                 </li>

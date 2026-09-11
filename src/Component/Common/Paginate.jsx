@@ -20,6 +20,7 @@ const Paginate = ({ itemsPerPage }) => {
             <Card
               key={items.id}
               id={items.id}
+              productDetails = {items}
               // item={item}1f040462
               bgCssImage="bg-[#8f81810e]"
               title={items.title}

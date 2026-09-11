@@ -7,6 +7,7 @@ export const DataStor = createSlice({
     category: [],
     filteredProducts: [],
     loding: true,
+    card:[],
 
     // form valid
     // form: {
@@ -30,6 +31,13 @@ export const DataStor = createSlice({
     },
     lodingReducer: (state, action) => {
       state.loding = action.payload;
+    },
+    cardReducer: (state, action) => {
+      const product = action.payload;
+      const alreadyAdded = state.card.some((item) => item.id === product.id);
+      if (!alreadyAdded && product?.id) {
+        state.card = [product, ...state.card];
+      }
     },
 
 
@@ -75,6 +83,7 @@ export const {
   categoryReducer,
   filteredProductsReducer,
   lodingReducer,
+  cardReducer,
   // emailReducer,
   // emailErrorReducer,
   // passwordReducer,
