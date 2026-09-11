@@ -6,19 +6,38 @@ import Card from "../Common/Card";
 
 
 import Slider from "react-slick";
+import { FaArrowLeftLong, FaArrowRight } from "react-icons/fa6";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { filteredProductsReducer, productReducer } from "../../Redux/DataStor";
 
 const SliderComponent = Slider?.default ?? Slider;
-function SampleNextArrow() {
-  // const { } = props;
-  return <div />;
+function SampleNextArrow({ onClick }) {
+  return (
+    <button
+      type="button"
+      aria-label="Next products"
+      onClick={onClick}
+      className="hidden cursor-pointer absolute -top-21.5 right-0 z-10 w-11 h-11 bg-[#F5F5F5] rounded-full lg:flex justify-center items-center"
+    >
+      <FaArrowRight />
+    </button>
+  );
 }
 
-function SamplePrevArrow() {
-  // const { } = props;
-  return <div />;
+function SamplePrevArrow({ onClick }) {
+  return (
+    <button
+      type="button"
+      aria-label="Previous products"
+      onClick={onClick}
+      className="hidden cursor-pointer absolute -top-21.5 right-13 z-10 w-11 h-11 bg-[#F5F5F5] rounded-full lg:flex justify-center items-center"
+    >
+      <FaArrowLeftLong />
+    </button>
+  );
 }
 
 const BestSells = () => {
@@ -47,9 +66,12 @@ const BestSells = () => {
   const settings = {
     dots: true,
     infinite: true,
-    // speed: 500,
+    speed: 500,
     slidesToShow,
     slidesToScroll: slidesToShow,
+    swipe: true,
+    touchMove: true,
+    draggable: true,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     // autoplay: true,
@@ -78,12 +100,12 @@ const BestSells = () => {
   return (
     <div className="lg:pt-17.5 lg:pb-35 py-8 bg-white">
       <Container>
-        <div className=" flex lg:flex-row flex-col gap-y-4 justify-between lg:items-end ">
+        <div className=" flex  lg:flex-row flex-col gap-y-4 justify-between lg:items-end ">
           <SecHead title="This Month " heading="  Best Selling Products" />
           <Btn onClick={handleViewAll}>View All</Btn>
         </div>
        
-          <div className="lg:mt-15 mt-8">
+          <div className="lg:mt-25 mt-8">
             <div ref={sliderContainerRef} className="slider-container">
               <SliderComponent className="best-sells-slider" {...settings}>
                 {Array.isArray(products) && products.map((items, index) => {
