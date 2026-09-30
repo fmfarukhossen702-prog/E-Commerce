@@ -7,7 +7,7 @@ export const DataStor = createSlice({
     category: [],
     filteredProducts: [],
     loding: true,
-    card:[],
+    card: localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [] ,
 
     // form valid
     // form: {
@@ -33,47 +33,22 @@ export const DataStor = createSlice({
       state.loding = action.payload;
     },
     cardReducer: (state, action) => {
-      const product = action.payload;
-      const alreadyAdded = state.card.some((item) => item.id === product.id);
-      if (!alreadyAdded && product?.id) {
-        state.card = [product, ...state.card];
+
+      const ifExists = state.card.find((item) => item.id === action.payload.id);
+      if (!ifExists) {
+        state.card = [action.payload , ...state.card];
+        localStorage.setItem("cart", JSON.stringify([...state.card]))
       }
     },
+    removeReducer: (state, action) => {
+      
+     state.card = state.card.filter((item) => item.id !== action.payload)
+             localStorage.setItem("cart", JSON.stringify([...state.card]));
+
+      },
 
 
-    // from valid
-    // emailReducer: (state, action) => {
-    //   state.form.email = action.payload;
-    // },
-    // emailErrorReducer: (state, action) => {
-    //   state.form.emailError = action.payload;
-    // },
-    // passwordReducer: (state, action) => {
-    //   state.form.password = action.payload;
-    // },
-    // passwordErrorReducer: (state, action) => {
-    //   state.form.passwordError = action.payload;
-    // },
-    // // logic fuction
-    // logicValidation: (state) => {
-
-    //   const email = state.form.email.trim();
-    //   const password = state.form.password.trim();
-
-    //   state.form.emailError = "";
-    //   state.form.passwordError = "";
-
-    //   if(!email){
-    //     state.form.emailError = "Please enter your Email.";
-    //   } else if(!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)){
-    //     state.form.emailError = "Enter a valid Email."
-    //   }
-    //   if(!password){
-    //     state.form.passwordError = "Please enter your password"
-    //   }else if(!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&])[A-Za-z\d@.#$!%*?&]{8,15}$/.test(password)){
-    //     state.form.passwordError = "Enter a valid Password "
-    //   }
-    // },
+    
   },
 });
 
@@ -84,11 +59,7 @@ export const {
   filteredProductsReducer,
   lodingReducer,
   cardReducer,
-  // emailReducer,
-  // emailErrorReducer,
-  // passwordReducer,
-  // passwordErrorReducer,
-  // logicValidation,
+  removeReducer,
 } = DataStor.actions;
 
 export default DataStor.reducer;

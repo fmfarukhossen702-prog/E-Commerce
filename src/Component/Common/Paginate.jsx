@@ -60,10 +60,11 @@ const Paginate = ({ itemsPerPage }) => {
 
   return (
     <>
-    <div className="grid grid-cols-3 gap-y-10  gap-5">
-        <Items currentItems={currentItems} />
-    </div>
-    
+      <div className="grid grid-cols-3 gap-y-10  gap-5">
+            <Items currentItems={currentItems} />
+
+      </div>
+
       <ReactPaginate
         breakLabel="..."
         nextLabel=" >"
@@ -72,7 +73,7 @@ const Paginate = ({ itemsPerPage }) => {
         pageCount={pageCount}
         previousLabel="< "
         renderOnZeroPageCount={null}
-        className="flex gap-2 mt-10 mb-7 justify-start items-center cursor-pointer mt-5"
+        className="flex gap-2 lg:mt-10 mb-7 justify-start items-center cursor-pointer mt-5"
         pageLinkClassName=" bg-[#000] text-white px-5  py-1 rounded-sm"
       />
     </>

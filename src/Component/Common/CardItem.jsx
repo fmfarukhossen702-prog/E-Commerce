@@ -3,13 +3,34 @@ import {
   MdOutlineKeyboardArrowDown,
   MdOutlineKeyboardArrowUp,
 } from "react-icons/md";
+import { useDispatch } from "react-redux";
+import { removeReducer } from "../../Redux/DataStor";
+import { toast, Bounce } from "react-toastify";
 
-const CardItem = ({imgSrc,price,brand}) => {
+
+const CardItem = ({imgSrc,price,brand, id}) => {
+
+  let dispatch = useDispatch()
+   const notify = () => {
+ toast.error("Remove Items", {
+   position: "top-right",
+   autoClose: 1500,
+   hideProgressBar: false,
+   closeOnClick: false,
+   pauseOnHover: true,
+   draggable: true,
+   progress: undefined,
+   theme: "light",
+   transition: Bounce,
+ });
+   };
+  
   return (
     <div>
       <div className=" flex justify-between items-center mt-10 px-10 py-6 rounded-sm shadow-sm ">
         <div className="  w-[25%] flex items-center gap-4">
           <div>
+            <span onClick={() => {dispatch(removeReducer(id)),notify()}} className=" cursor-pointer  w-5 h-5 rounded-full flex justify-center  items-center bg-primary text-white p-2 text-[10px] ">X</span>
             <img className=" w-12.5 h-10 " src={imgSrc} alt="" />
           </div>
           <h3>{brand}</h3>

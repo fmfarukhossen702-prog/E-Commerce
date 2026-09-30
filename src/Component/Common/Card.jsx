@@ -3,8 +3,9 @@ import { Rate } from "antd";
 import { CiHeart } from "react-icons/ci";
 import { IoEyeOutline } from "react-icons/io5";
 import { useNavigate } from "react-router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { cardReducer } from "../../Redux/DataStor";
+import { toast, Bounce } from "react-toastify";
 
 const Card = ({
   discount,
@@ -35,27 +36,59 @@ const Card = ({
     rating,
     reviews: [],
   };
+  const notify = (matchItem) => {
+    matchItem.length == 0
+      ? toast.success("Successfull add to card!", {
+          position: "top-right",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        })
+      : toast.warn("Allready add to card", {
+          position: "top-right",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
+  };
 
   const handleProduDetails = () => {
     if (itemData?.id) navigate(`/productDetails/${itemData.id}`);
   };
 
-  const handleCardItem = () => {
+  const cardData = useSelector((state) => state.dataStor.card);
+
+  const handleCardItem = (id) => {
     if (!itemData?.id) return;
     dispatch(cardReducer(itemData));
+    let matchItem = cardData.filter((items) => items.id == id);
+    notify(matchItem);
   };
 
   return (
-    <div
-  
-      className=" w-full lg:w-67.5  group h-87.5 "
-    >
+    <div className=" w-full lg:w-67.5  group h-87.5 ">
       <div className=" relative  ">
         <div
           className={`h-62.5 object-contain w-full relative overflow-hidden ${bgCssImage} `}
         >
-          <img onClick={handleProduDetails}  src={image} alt="" className="w-full" />
-          <button onClick={handleCardItem}
+          <img
+            onClick={handleProduDetails}
+            src={image}
+            alt=""
+            className="w-full"
+          />
+          <button
+            onClick={() => handleCardItem(id)}
             className={` ${AddToCardCss} w-full py-2 cursor-pointer bg-black rounded-bl-sm rounded-br-sm rounded-tr-xs rounded-tl-xs  absolute left-0 bottom-0 translate-y-full   duration-500 ease-in group-hover:translate-y-0  text-center text-white `}
           >
             Add To Cart

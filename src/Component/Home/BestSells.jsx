@@ -16,7 +16,8 @@ import { filteredProductsReducer, productReducer } from "../../Redux/DataStor";
 const SliderComponent = Slider?.default ?? Slider;
 function SampleNextArrow({ onClick }) {
   return (
-    <button
+    <button 
+    
       type="button"
       aria-label="Next products"
       onClick={onClick}
