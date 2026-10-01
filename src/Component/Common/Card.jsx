@@ -6,6 +6,7 @@ import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { cardReducer } from "../../Redux/DataStor";
 import { toast, Bounce } from "react-toastify";
+import { RiDeleteBin3Fill } from "react-icons/ri";
 
 const Card = ({
   discount,
@@ -22,6 +23,9 @@ const Card = ({
   bgCssImage,
   id,
   productDetails,
+  eyeIconCss,
+  deletIcon,
+  heartIconCss,
 }) => {
   let navigate = useNavigate();
   const dispatch = useDispatch();
@@ -70,7 +74,7 @@ const Card = ({
 
   const handleCardItem = (id) => {
     if (!itemData?.id) return;
-    dispatch(cardReducer(itemData));
+    dispatch(cardReducer({ ...itemData, qunt: 1 }));
     let matchItem = cardData.filter((items) => items.id == id);
     notify(matchItem);
   };
@@ -101,10 +105,19 @@ const Card = ({
         </div>
         <div className="absolute top-3 right-3 space-y-2.5 ">
           {/* Heart icon add  */}
-          <div className=" cursor-pointer w-8.5 h-8.5 rounded-full text-xl bg-white flex items-center justify-center  ">
+          <div
+            className={` ${heartIconCss} cursor-pointer w-8.5 h-8.5 rounded-full text-xl bg-white flex items-center justify-center`}
+          >
             <CiHeart />
           </div>
-          <div className=" cursor-pointer w-8.5 h-8.5 rounded-full  text-xl bg-white flex items-center justify-center  ">
+          <div
+            className={` ${deletIcon || "hidden"} cursor-pointer w-8.5 h-8.5 rounded-full text-xl text-[#161616]`}
+          >
+            <RiDeleteBin3Fill />
+          </div>
+          <div
+            className={` ${eyeIconCss} cursor-pointer w-8.5 h-8.5 rounded-full  text-xl bg-white flex items-center justify-center `}
+          >
             <IoEyeOutline />
           </div>
         </div>

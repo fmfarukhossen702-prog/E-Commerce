@@ -23,7 +23,7 @@ const CardToAdd = () => {
         {
           cardItems.map((item) => {
             return <CardItem id = { item.id} imgSrc={item.thumbnail}
-            price={item.price} brand={item.brand} />;
+            price={item.price} brand={item.brand} qunt={item.qunt} />;
           })
         }
 

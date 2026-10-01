@@ -6,6 +6,7 @@ import SignUp from "../Pages/SignUp";
 import Login from "../Pages/Login";
 import ProductDetails from "../Pages/ProductDetails";
 import CardToAdd from "../Pages/CardToAdd";
+import WishListPage from "../Pages/WishListPage";
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ export const router = createBrowserRouter([
       { path: "login", Component: Login },
       { path: "productDetails/:id", Component: ProductDetails },
       { path: "cardItems", Component: CardToAdd },
+      { path: "wishlist", Component: WishListPage },
     ],
   },
 ]);

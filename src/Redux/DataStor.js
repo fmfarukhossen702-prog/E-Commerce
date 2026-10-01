@@ -46,6 +46,18 @@ export const DataStor = createSlice({
              localStorage.setItem("cart", JSON.stringify([...state.card]));
 
       },
+  incrementReducer: (state, action) => {
+      
+     state.card = state.card.map((item) => item.id == action.payload ? { ...item, qunt: item.qunt + 1 } : item)
+             localStorage.setItem("cart", JSON.stringify([...state.card]));
+
+      },
+  decrementReducer: (state, action) => {
+      
+     state.card = state.card.map((item) => item.id == action.payload ? { ...item, qunt: item.qunt - 1 } : item)
+             localStorage.setItem("cart", JSON.stringify([...state.card]));
+
+      },
 
 
     
@@ -60,6 +72,8 @@ export const {
   lodingReducer,
   cardReducer,
   removeReducer,
+  incrementReducer,
+  decrementReducer,
 } = DataStor.actions;
 
 export default DataStor.reducer;
