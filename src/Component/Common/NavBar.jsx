@@ -5,13 +5,14 @@ import { IoIosSearch } from "react-icons/io";
 import { CiHeart } from "react-icons/ci";
 import { PiShoppingCartThin } from "react-icons/pi";
 import { HiBars3CenterLeft } from "react-icons/hi2";
-import {  NavLink, useNavigate } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 
 const NavBar = () => {
   const [search, setSearch] = useState("");
   const [active, setActive] = useState(false);
   const cardLength = useSelector((state) => state.dataStor.card);
+  const wishlistLength = useSelector((state) => state.dataStor.wishlist);
 
   let navigate = useNavigate();
 
@@ -20,7 +21,12 @@ const NavBar = () => {
       <Container>
         <div className="flex justify-between items-center font-Poppins  ">
           <div className="w-[25%] ">
-            <img onClick={()=> navigate('/')} className="cursor-pointer " src={logo} alt="" />
+            <img
+              onClick={() => navigate("/")}
+              className="cursor-pointer "
+              src={logo}
+              alt=""
+            />
           </div>
 
           <HiBars3CenterLeft
@@ -60,7 +66,16 @@ const NavBar = () => {
                 )}
               </div>
               <div className="flex gap-4 text-[32px] ">
-                <CiHeart className=" cursor-pointer " />
+                <div
+                  onClick={() => navigate("/wishlist")}
+                  className="relative "
+                >
+                  <CiHeart className=" cursor-pointer " />
+                  <div className=" absolute -top-2 -right-2 w-4 h-4 rounded-full text-white text-[10px] flex bg-primary justify-center items-center  ">
+                    {wishlistLength.length}
+                  </div>
+                </div>
+
                 <div
                   onClick={() => navigate("/cardItems")}
                   className="relative "

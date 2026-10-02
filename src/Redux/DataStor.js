@@ -8,6 +8,7 @@ export const DataStor = createSlice({
     filteredProducts: [],
     loding: true,
     card: localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [] ,
+    wishlist: localStorage.getItem("wishlist") ? JSON.parse(localStorage.getItem("wishlist")) : [] ,
 
     // form valid
     // form: {
@@ -40,6 +41,19 @@ export const DataStor = createSlice({
         localStorage.setItem("cart", JSON.stringify([...state.card]))
       }
     },
+    wishlistReducer: (state, action) => {
+
+      const ifExists = state.wishlist.find((item) => item.id === action.payload.id);
+      if (!ifExists) {
+        state.wishlist = [action.payload , ...state.wishlist];
+        localStorage.setItem("wishlist", JSON.stringify([...state.wishlist]))
+      }
+    },
+    removeWishlistReducer: (state, action) => {
+      state.wishlist = state.wishlist.filter((item) => item.id !== action.payload)
+      localStorage.setItem("wishlist", JSON.stringify([...state.wishlist]))
+      }
+    },
     removeReducer: (state, action) => {
       
      state.card = state.card.filter((item) => item.id !== action.payload)
@@ -62,7 +76,7 @@ export const DataStor = createSlice({
 
     
   },
-});
+);
 
 // Action creators are generated for each case reducer function
 export const {
@@ -74,6 +88,8 @@ export const {
   removeReducer,
   incrementReducer,
   decrementReducer,
+  wishlistReducer,
+  removeWishlistReducer
 } = DataStor.actions;
 
 export default DataStor.reducer;
