@@ -2,46 +2,76 @@ import React, { useState } from "react";
 import Container from "../Component/Common/Container";
 import BreadCrumb from "../Component/Common/BreadCrumb";
 import CardItem from "../Component/Common/CardItem";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Btn from "../Component/Common/Btn";
 import { NavLink } from "react-router";
+import { couponReducer } from "../Redux/DataStor";
 
 const CardToAdd = () => {
-    const [color, setColor] = useState("color-1");
+
+  const dispatch = useDispatch()
+
+
+  // state
+
+  // const [couponDiscount, setCouponDiscount] = useState(0);
+  // const [active, setActive] = useState(
+  //   " Enter a 4-digit coupon code to get $10 off.",
+  // );
+
+  // dataStor state 
   const cardItems = useSelector((state) => state.dataStor.card);
+  const postalCode = useSelector((state) => state.dataStor.postalCode);
+  const couponCode = useSelector((state) =>  state.dataStor.couponCode )
+ console.log(couponCode)
+
+  const [value, setValue] = useState(  "");
+
+  const isFreeDelivery = postalCode === "4321";
+  const delivery = isFreeDelivery ? 0 : 5;
+
   let subTotal = 0;
   cardItems.map((item) => {
     return (subTotal += item.price * item.qunt);
   });
+ const isCouponApplied = Number(couponCode) === 1234;
+ const couponDiscount = isCouponApplied ?10 : 0 
 
-  const [value, setValue] = useState();
-  const [couponDiscount, setCouponDiscount] = useState(0);
-  const [active, setActive] = useState(
-    " Enter a 4-digit coupon code to get $10 off.",
-  );
-
-  let couponValue = 1234;
-
+ 
 
   const handleCoupon = () => {
-    if (!value.trim()) {
-      setCouponDiscount(0);
-      setActive("Enter a 4-digit coupon code to get $10 off. ");
-      return;
-    }
+      let count = 1234
+      if (Number(value) === count ){
+    
+        dispatch(couponReducer(count)), setValue("")
 
-    if (couponValue === Number(value)) {
-      setCouponDiscount(10);
-      setActive("Successfully applied! You received a $10 discount.");
-    }else{
-      setCouponDiscount(0)
-      setActive(
-        "Wrong number.  Please Enter a 4-digit coupon code to get $10 off.",
-      );
-    }
+         
+  }}
+
+   const active = isCouponApplied
+    ? "Already successfully our coupon code"
+    : " Enter a 4-digit coupon code to get $10 off.";
 
 
-  };
+  // let couponValue = 1234;
+
+  // const handleCoupon = () => {
+  //   if (!couponCode.trim()) {
+  //     setCouponDiscount(0);
+  //     setActive("Enter a 4-digit coupon code to get $10 off. ");
+  //     return;
+  //   }
+  
+  //   if (couponValue === Number(value)) {
+  //     setCouponDiscount(10);
+  //     setActive("Successfully applied! You received a $10 discount.");
+  //   } else {
+  //     setCouponDiscount(0);
+  //     setActive(
+  //       "Wrong number.  Please Enter a 4-digit coupon code to get $10 off.",
+  //     );
+  //   }
+  // };
 
   return (
     <div className="pb-52">
@@ -84,15 +114,16 @@ const CardToAdd = () => {
           <div>
             <div className=" flex gap-3  ">
               <input
-                value={value}
+                value={isCouponApplied ? "": value}
                 onChange={(e) => {
+                  e.preventDefault;
                   setValue(e.target.value.trim());
                 }}
-                type="number"
+                type="text"
                 placeholder="Coupon Code"
                 className=" rounded-md px-3 h-14 py-4 border shadow-sm border-[#0000003e] "
               />
-              <Btn onClick={handleCoupon}>Apply Coupon</Btn>
+              <button className=" py-3 px-6 bg-primary rounded-md text-white " onClick={handleCoupon}>Apply Coupon</button>
             </div>
 
             <p className={`text-sm text-black px-2 py-1 `}> {active}</p>
@@ -104,14 +135,22 @@ const CardToAdd = () => {
               <span> Subtotal: </span> <span>${subTotal.toFixed(2)} </span>
             </div>
             <div className=" flex justify-between items-center border-b pb-3 pt-5 border-b-[#00000030]  ">
-              <span> Shipping: </span> <span> $5</span>
+              <span> Shipping: </span>{" "}
+              <span className=" text-sm ">
+                {" "}
+                {isFreeDelivery && "Postal code matches your delivery Free"}
+              </span>{" "}
+              <span className=" font-medium">
+                {" "}
+                {isFreeDelivery ? "Free" : `$${delivery}`}{" "}
+              </span>
             </div>
             <div className=" flex justify-between items-center border-b pb-3 pt-5 border-b-[#00000030]  ">
               <span> Discount: </span> <span> ${couponDiscount}</span>
             </div>
             <div className=" flex justify-between items-center  pb-3 pt-5  ">
               <span> Total: </span>{" "}
-              <span> ${(subTotal + 5 - couponDiscount).toFixed(2)}</span>
+              <span> ${(subTotal + delivery - couponDiscount).toFixed(2)}</span>
             </div>
             <div className=" text-center">
               {" "}

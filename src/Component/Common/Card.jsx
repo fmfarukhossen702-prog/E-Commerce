@@ -1,12 +1,12 @@
 import React from "react";
 import { Rate } from "antd";
-import { CiHeart } from "react-icons/ci";
 import { IoEyeOutline } from "react-icons/io5";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { cardReducer, removeWishlistReducer, wishlistReducer } from "../../Redux/DataStor";
 import { toast, Bounce } from "react-toastify";
 import { RiDeleteBin3Fill } from "react-icons/ri";
+import { FaHeart } from "react-icons/fa";
 
 const Card = ({
   discount,
@@ -128,15 +128,22 @@ const Card = ({
         <div className="absolute top-3 right-3 space-y-2.5 ">
           {/* Heart icon add  */}
           <div
-          onClick={() => handleHeardItem(id)}
+            onClick={() => handleHeardItem(id)}
             className={` ${heartIconCss} cursor-pointer w-8.5 h-8.5 rounded-full text-xl bg-white flex items-center justify-center`}
           >
-            <CiHeart className={isWishlisted ? "text-red-500 font-extrabold" : ""} />
+            <FaHeart
+              className={isWishlisted ? "text-red-500 font-extrabold" : ""}
+            />
           </div>
           <div
             className={` ${deletIcon || "hidden"} cursor-pointer w-8.5 h-8.5 rounded-full text-xl text-[#161616]`}
           >
-            <RiDeleteBin3Fill className="cursor-pointer" onClick={() => {dispatch(removeWishlistReducer( id )), removeNotify()}} />
+            <RiDeleteBin3Fill
+              className="cursor-pointer"
+              onClick={() => {
+                (dispatch(removeWishlistReducer(id)), removeNotify());
+              }}
+            />
           </div>
           <div
             className={` ${eyeIconCss} cursor-pointer w-8.5 h-8.5 rounded-full  text-xl bg-white flex items-center justify-center `}

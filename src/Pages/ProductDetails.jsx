@@ -2,32 +2,40 @@ import Container from "../Component/Common/Container";
 import BreadCrumb from "../Component/Common/BreadCrumb";
 import { Rate } from "antd";
 import Btn from "../Component/Common/Btn";
-import { CiHeart } from "react-icons/ci";
 import delivary from "../assets/icon-delivery.png";
 import returnn from "../assets/Icon-return.png";
 import {  useNavigate, useParams } from "react-router";
 import SkeletonImage from "../Component/Common/SkeletonImage";
 import TextSkeleton from "../Component/Common/TextSkeleton";
 import { useDispatch, useSelector } from "react-redux";
-import { cardReducer } from "../Redux/DataStor";
+import { cardReducer, wishlistReducer } from "../Redux/DataStor";
 import { useState } from "react";
+import { FaHeart } from "react-icons/fa";
+import FreeDelivery from "../Component/Common/FreeDelivery";
 
 
 const ProductDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-    const [color, setColor] = useState("color-1");
-    const [size ,setSize] = useState("xl")
+  const dispatch = useDispatch();
+
+  // state part 
+  const [color, setColor] = useState("color-1");
+  const [size ,setSize] = useState("xl")
+  const [qunt, setQunt] = useState(1);
+  const [ freeDelivery , setFreeDelivery ] = useState(false)
+
+  // dataStor theke state 
   const products = useSelector((state) => state.dataStor.products);
   const loding = useSelector((state) => state.dataStor.loding);
-  const dispatch = useDispatch();
-  const [qunt, setQunt] = useState(1);
+  const wishList = useSelector((state) => state.dataStor.wishlist);
+ 
   const productDetails = products.find((item) => item.id === Number(id));
   const productImages = Array.isArray(productDetails?.images)
     ? productDetails.images
     : [];
 
-    
+
   if (!loding && !productDetails) {
     return (
       <Container>
@@ -39,6 +47,23 @@ const ProductDetails = () => {
  
   return (
     <div className="pb-25">
+      <div
+        onClick={() => setFreeDelivery(false)}
+        className={` ${freeDelivery ? " fixed  top-0 left-0 z-50 flex justify-between items-center " : "hidden "} w-full h-screen bg-[#959393d2]  `}
+      >
+        <div className="w-170 h-135 mx-auto relative">
+          <button className=" w-6 h-6 flex justify-center items-center text-sm font-bold absolute -top-5 -right-5 bg-[#ffffffd1] rounded-sm  cursor-pointer ">
+            {" "}
+            X
+          </button>
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className=" w-170 h-130 bg-[#fdfdfd49] py-12 px-6 rounded-md    mx-auto  "
+          >
+           <FreeDelivery/>
+          </div>
+        </div>
+      </div>
       <Container>
         <BreadCrumb />
         <div className=" flex gap-17.5 ">
@@ -180,7 +205,9 @@ const ProductDetails = () => {
               <ul className=" h-11! text-xl!  flex gap-4  ">
                 <li className=" rounded-sm border border-[#00000069] flex ">
                   <div
-                    onClick={() => setQunt((currentQunt) => Math.max(1, currentQunt - 1))}
+                    onClick={() =>
+                      setQunt((currentQunt) => Math.max(1, currentQunt - 1))
+                    }
                     className="w-10 h-full text-lg flex justify-center items-center cursor-pointer"
                   >
                     {" "}
@@ -198,18 +225,28 @@ const ProductDetails = () => {
                 </li>
                 <li>
                   <Btn
-                    onClick={() =>
-                      { if(!productDetails) returnn;
-                         (dispatch(cardReducer({ ...productDetails, qunt })),
-                        navigate("/cardItems"));}
-                    }
+                    onClick={() => {
+                      if (!productDetails) returnn;
+                      (dispatch(cardReducer({ ...productDetails, qunt })),
+                        navigate("/cardItems"));
+                    }}
                     className="h-11 flex justify-center items-center text-sm"
                   >
                     Buy Now
                   </Btn>
                 </li>
-                <li className=" h-10 w-10 rounded-sm border flex justify-center items-center  ">
-                  <CiHeart className=" text-3xl " />
+                <li
+                  onClick={() => {
+                    if (productDetails) {
+                      (dispatch(wishlistReducer(productDetails)),
+                        navigate("/wishlist"));
+                    }
+                  }}
+                  className=" h-10 w-10 rounded-sm border cursor-pointer flex justify-center items-center  "
+                >
+                  <FaHeart
+                    className={` ${wishList.some((item) => item.id === productDetails?.id) ? "text-red-600" : " "} text-3xl`}
+                  />
                 </li>
               </ul>
               <div className="w-full rounded-sm border  border-[#00000069] py-6  mt-6 ">
@@ -217,7 +254,10 @@ const ProductDetails = () => {
                   <div>
                     <img src={delivary} alt="" />
                   </div>
-                  <div className=" font-medium space-y-2">
+                  <div
+                    onClick={() => setFreeDelivery(true)}
+                    className=" font-medium cursor-pointer space-y-2"
+                  >
                     <h3> Free Delivery</h3>
                     <p className=" text-[12px] underline ">
                       {" "}

@@ -7,6 +7,12 @@ export const DataStor = createSlice({
     category: [],
     filteredProducts: [],
     loding: true,
+    couponCode: localStorage.getItem("couponCode")
+      ? JSON.parse(localStorage.getItem("couponCode"))
+      : "",
+    postalCode: localStorage.getItem("postalCode")
+      ? JSON.parse(localStorage.getItem("postalCode"))
+      : "",
     card: localStorage.getItem("cart")
       ? JSON.parse(localStorage.getItem("cart"))
       : [],
@@ -27,6 +33,14 @@ export const DataStor = createSlice({
     productReducer: (state, action) => {
       state.products = action.payload;
     },
+    postalReducer: (state, action) => {
+      state.postalCode = action.payload;
+      localStorage.setItem("postalCode", JSON.stringify(state.postalCode));
+    },
+    couponReducer: (state, action) => {
+      state.couponCode = action.payload;
+      localStorage.setItem("couponCode", JSON.stringify(state.couponCode));
+    },
     categoryReducer: (state, action) => {
       state.category = action.payload;
     },
@@ -44,7 +58,6 @@ export const DataStor = createSlice({
       }
     },
     removeReducer: (state, action) => {
-
       state.card = state.card.filter((item) => item.id !== action.payload);
       localStorage.setItem("cart", JSON.stringify([...state.card]));
     },
@@ -64,7 +77,6 @@ export const DataStor = createSlice({
       localStorage.setItem("wishlist", JSON.stringify([...state.wishlist]));
     },
     incrementReducer: (state, action) => {
-      
       state.card = state.card.map((item) =>
         item.id === action.payload
           ? { ...item, qunt: Number(item.qunt || 0) + 1 }
@@ -73,12 +85,12 @@ export const DataStor = createSlice({
       localStorage.setItem("cart", JSON.stringify(state.card));
     },
     decrementReducer: (state, action) => {
-          state.card = state.card.map((item) =>
-            item.id === action.payload
-              ? { ...item, qunt: Math.max(1, Number(item.qunt || 1) -1)}
-              : item,
-          );
-          localStorage.setItem("cart", JSON.stringify(state.card));
+      state.card = state.card.map((item) =>
+        item.id === action.payload
+          ? { ...item, qunt: Math.max(1, Number(item.qunt || 1) - 1) }
+          : item,
+      );
+      localStorage.setItem("cart", JSON.stringify(state.card));
     },
   },
 });
@@ -95,6 +107,8 @@ export const {
   decrementReducer,
   wishlistReducer,
   removeWishlistReducer,
+  postalReducer,
+  couponReducer,
 } = DataStor.actions;
 
 export default DataStor.reducer;
