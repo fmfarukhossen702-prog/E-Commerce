@@ -20,14 +20,7 @@ export const DataStor = createSlice({
       ? JSON.parse(localStorage.getItem("wishlist"))
       : [],
 
-    // form valid
-    // form: {
-    //   email: "",
-    //   emailError: "",
-    //   password: "",
-    //   passwordError: "",
-    // },
-    // from valid end
+  
   },
   reducers: {
     productReducer: (state, action) => {
@@ -37,7 +30,15 @@ export const DataStor = createSlice({
       state.postalCode = action.payload;
       localStorage.setItem("postalCode", JSON.stringify(state.postalCode));
     },
+    removePostalReducer: (state, action) => {
+      state.postalCode = action.payload;
+      localStorage.setItem("postalCode", JSON.stringify(state.postalCode));
+    },
     couponReducer: (state, action) => {
+      state.couponCode = action.payload;
+      localStorage.setItem("couponCode", JSON.stringify(state.couponCode));
+    },
+    removeCouponReducer: (state, action) => {
       state.couponCode = action.payload;
       localStorage.setItem("couponCode", JSON.stringify(state.couponCode));
     },
@@ -98,6 +99,7 @@ export const DataStor = createSlice({
 // Action creators are generated for each case reducer function
 export const {
   productReducer,
+  removeCouponReducer,
   categoryReducer,
   filteredProductsReducer,
   lodingReducer,
@@ -109,6 +111,7 @@ export const {
   removeWishlistReducer,
   postalReducer,
   couponReducer,
+  removePostalReducer,
 } = DataStor.actions;
 
 export default DataStor.reducer;

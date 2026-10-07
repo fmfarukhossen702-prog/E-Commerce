@@ -5,7 +5,7 @@ import CardItem from "../Component/Common/CardItem";
 import { useDispatch, useSelector } from "react-redux";
 import Btn from "../Component/Common/Btn";
 import { NavLink } from "react-router";
-import { couponReducer } from "../Redux/DataStor";
+import { couponReducer, removeCouponReducer, removePostalReducer } from "../Redux/DataStor";
 
 const CardToAdd = () => {
 
@@ -51,6 +51,10 @@ const CardToAdd = () => {
    const active = isCouponApplied
     ? "Already successfully our coupon code"
     : " Enter a 4-digit coupon code to get $10 off.";
+   const activePlaceholder = isCouponApplied
+    ? "Already successfully our coupon code"
+    : "Coupon code"
+   
 
 
   // let couponValue = 1234;
@@ -114,19 +118,42 @@ const CardToAdd = () => {
           <div>
             <div className=" flex gap-3  ">
               <input
-                value={isCouponApplied ? "": value}
+                value={isCouponApplied ? "" : value}
                 onChange={(e) => {
                   e.preventDefault;
                   setValue(e.target.value.trim());
                 }}
                 type="text"
-                placeholder="Coupon Code"
+                placeholder={`${activePlaceholder} `}
                 className=" rounded-md px-3 h-14 py-4 border shadow-sm border-[#0000003e] "
               />
-              <button className=" py-3 px-6 bg-primary rounded-md text-white " onClick={handleCoupon}>Apply Coupon</button>
+
+              <button
+                className=" py-3 px-6 bg-primary rounded-md text-white "
+                onClick={handleCoupon}
+              >
+                Apply Coupon
+              </button>
             </div>
 
             <p className={`text-sm text-black px-2 py-1 `}> {active}</p>
+            <div className=" mt-10 flex items-center gap-5">
+              <div
+                onClick={() => dispatch(removeCouponReducer(" "))}
+                className={`${couponDiscount ? "py-4 px-2 w-40 text-center bg-[#0000001b]  text-sm rounded-sm ml-5 cursor-pointer text-black" : " "}`}
+              >
+                {couponDiscount ? " Remove discount " : ""}
+              </div>
+
+              {isFreeDelivery && (
+                <button
+                  onClick={() => dispatch(removePostalReducer(" "))}
+                  className="py-4 px-2 w-50 text-center bg-[#0000001b]  text-sm rounded-sm ml-5 cursor-pointer text-black"
+                >
+                  Remove Free Delivery
+                </button>
+              )}
+            </div>
           </div>
 
           <div className=" px-6 py-8 border border-[#00000096]  rounded-md w-117.5  ">
@@ -146,7 +173,10 @@ const CardToAdd = () => {
               </span>
             </div>
             <div className=" flex justify-between items-center border-b pb-3 pt-5 border-b-[#00000030]  ">
-              <span> Discount: </span> <span> ${couponDiscount}</span>
+              <div>
+                <span> Discount: </span>{" "}
+              </div>{" "}
+              <span> ${couponDiscount}</span>
             </div>
             <div className=" flex justify-between items-center  pb-3 pt-5  ">
               <span> Total: </span>{" "}
