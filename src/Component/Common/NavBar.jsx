@@ -12,26 +12,26 @@ import { IoIosSearch } from "react-icons/io";
 const NavBar = () => {
   let navigate = useNavigate();
 
-  
   const [active, setActive] = useState(false);
   const cardLength = useSelector((state) => state.dataStor.card);
   const wishlistLength = useSelector((state) => state.dataStor.wishlist);
   const allProducts = useSelector((state) => state.dataStor.products);
   const [searchProducts, setSearchProducts] = useState([]);
-  const [search ,setSearch] = useState('')
+  const [search, setSearch] = useState("");
   console.log(searchProducts);
   const handleChange = (e) => {
-    
+    const inputValue = e.target.value;
+
     const value = e.target.value.trim().toLowerCase();
-    if(!value){
-      setSearchProducts([])
+    setSearch(inputValue);
+    if (!value) {
+      setSearchProducts([]);
       return;
     }
 
     setSearchProducts(
-      allProducts.filter((item) => item.title.toLowerCase().includes(value)),
+      allProducts.filter((item) => item.title.toLowerCase().startsWith(value)),
     );
-    setSearch(value)
   };
 
   return (
@@ -88,9 +88,11 @@ const NavBar = () => {
                         let name = item.title;
                         return (
                           <li
-                            onClick={() =>
-                             { navigate(`/productDetails/${item.id}`),setSearchProducts([]), setSearch("")}
-                            }
+                            onClick={() => {
+                              (navigate(`/productDetails/${item.id}`),
+                                setSearchProducts([]),
+                                setSearch(""));
+                            }}
                             className=" py-1 flex items-center gap-2 border-b text-black border-b-[#ffff] "
                           >
                             {" "}
