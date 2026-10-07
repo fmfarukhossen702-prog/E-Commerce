@@ -1,23 +1,41 @@
 import React, { useState } from "react";
 import Container from "./Container";
 import logo from "../../assets/Logo.png";
-import { IoIosSearch } from "react-icons/io";
+// import { IoIosSearch } from "react-icons/io";
 import { CiHeart } from "react-icons/ci";
 import { PiShoppingCartThin } from "react-icons/pi";
 import { HiBars3CenterLeft } from "react-icons/hi2";
 import { NavLink, useNavigate } from "react-router";
 import { useSelector } from "react-redux";
+import { IoIosSearch } from "react-icons/io";
 
 const NavBar = () => {
-  const [search, setSearch] = useState("");
+  let navigate = useNavigate();
+
+  
   const [active, setActive] = useState(false);
   const cardLength = useSelector((state) => state.dataStor.card);
   const wishlistLength = useSelector((state) => state.dataStor.wishlist);
+  const allProducts = useSelector((state) => state.dataStor.products);
+  const [searchProducts, setSearchProducts] = useState([]);
+  const [search ,setSearch] = useState('')
+  console.log(searchProducts);
+  const handleChange = (e) => {
+    
+    const value = e.target.value.trim().toLowerCase();
+    if(!value){
+      setSearchProducts([])
+      return;
+    }
 
-  let navigate = useNavigate();
+    setSearchProducts(
+      allProducts.filter((item) => item.title.toLowerCase().includes(value)),
+    );
+    setSearch(value)
+  };
 
   return (
-    <div className=" py-8 bg-white border-b relative">
+    <div className="relative z-20 py-8 bg-white border-b">
       <Container>
         <div className="flex justify-between items-center font-Poppins  ">
           <div className="w-[25%] ">
@@ -50,18 +68,45 @@ const NavBar = () => {
                 </NavLink>
               </li>
             </ul>
+
             <div className=" flex lg:flex-row flex-col gap-y-3  pt-4 lg:pt-0  gap-6 items-center">
-              <div className="w-full max-w-60.75 rounded-sm relative ">
+              <div className="w-full max-w-60.75  rounded-sm relative ">
                 <input
                   className=" bg-[#F5F5F5] w-full py-1.75 px-3 placeholder:text-[12px]  "
                   type="search"
                   value={search}
-                  onChange={(e) => setSearch(e.target.value)}
+                  onChange={handleChange}
                   name=""
                   id=""
                   placeholder="What are you looking for?"
                 />
-                {!search && (
+
+                {searchProducts.length > 0 && (
+                  <div className="absolute left-0 top-full z-30 h-110 w-full overflow-y-auto scroll-smooth scrollbar-thin-light bg-[#999] px-4 py-5">
+                    <ul>
+                      {searchProducts.map((item) => {
+                        let name = item.title;
+                        return (
+                          <li
+                            onClick={() =>
+                             { navigate(`/productDetails/${item.id}`),setSearchProducts([]), setSearch("")}
+                            }
+                            className=" py-1 flex items-center gap-2 border-b text-black border-b-[#ffff] "
+                          >
+                            {" "}
+                            <img
+                              src={item.thumbnail}
+                              alt=""
+                              className="w-6 h-6 "
+                            />
+                            {name.slice(0, 18)}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                )}
+                {!searchProducts && (
                   <IoIosSearch className=" text-black  absolute top-1/2 cursor-pointer -translate-1/2 right-1 text-2xl " />
                 )}
               </div>

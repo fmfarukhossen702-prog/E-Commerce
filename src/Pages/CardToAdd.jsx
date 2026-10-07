@@ -142,7 +142,7 @@ const CardToAdd = () => {
               </span>{" "}
               <span className=" font-medium">
                 {" "}
-                {isFreeDelivery ? "Free" : `$${delivery}`}{" "}
+                {isFreeDelivery ? "$ 00" : `$${delivery}`}{" "}
               </span>
             </div>
             <div className=" flex justify-between items-center border-b pb-3 pt-5 border-b-[#00000030]  ">

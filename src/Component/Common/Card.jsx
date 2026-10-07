@@ -132,7 +132,7 @@ const Card = ({
             className={` ${heartIconCss} cursor-pointer w-8.5 h-8.5 rounded-full text-xl bg-white flex items-center justify-center`}
           >
             <FaHeart
-              className={isWishlisted ? "text-red-500 font-extrabold" : ""}
+              className={isWishlisted ? "text-red-500 font-extrabold" : " text-[#0000002e]"}
             />
           </div>
           <div

@@ -21,6 +21,28 @@ body,
   @apply max-w-full overflow-x-hidden;
 }
 
+.scrollbar-thin-light {
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db transparent;
+}
+
+.scrollbar-thin-light::-webkit-scrollbar {
+  width: 5px;
+}
+
+.scrollbar-thin-light::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin-light::-webkit-scrollbar-thumb {
+  border-radius: 9999px;
+  background: #d1d5db;
+}
+
+.scrollbar-thin-light::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
 li.slick-active div {
   @apply bg-primary border-2 border-white;
 }

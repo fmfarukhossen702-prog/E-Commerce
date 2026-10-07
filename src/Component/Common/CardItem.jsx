@@ -11,9 +11,11 @@ import {
   removeReducer,
 } from "../../Redux/DataStor";
 import { toast, Bounce } from "react-toastify";
+import { useNavigate } from "react-router";
 
 const CardItem = ({ imgSrc, price, brand, id, qunt }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const notify = () => {
     toast.error("Remove Items", {
@@ -46,17 +48,28 @@ const CardItem = ({ imgSrc, price, brand, id, qunt }) => {
             >
               X
             </span>
-            <img className=" w-12.5 h-10 " src={imgSrc} alt="" />
+            <img className="  w-12.5 h-10 " src={imgSrc} alt="" />
           </div>
-          <h3>{brand}</h3>
+          <h3
+            onClick={() => navigate(`/productDetails/${id}`)}
+            className=" cursor-pointer "
+          >
+            {brand}
+          </h3>
         </div>
         <h3 className="  w-[25%] ">${price}</h3>
         <div className="w-[25%] mx-auto ">
           <div className="  h-11 w-18 flex justify-center rounded-sm border border-[#00000061] items-center gap-4 ">
             <h6>{qunt}</h6>
             <div className=" flex flex-col ">
-              <MdOutlineKeyboardArrowUp className=" cursor-pointer "   onClick={()=>    dispatch(incrementReducer(id)) } />
-              <MdOutlineKeyboardArrowDown className=" cursor-pointer "   onClick={() => dispatch(decrementReducer(id)) }  />
+              <MdOutlineKeyboardArrowUp
+                className=" cursor-pointer "
+                onClick={() => dispatch(incrementReducer(id))}
+              />
+              <MdOutlineKeyboardArrowDown
+                className=" cursor-pointer "
+                onClick={() => dispatch(decrementReducer(id))}
+              />
             </div>
           </div>
         </div>
