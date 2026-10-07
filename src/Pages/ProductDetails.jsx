@@ -51,14 +51,14 @@ const ProductDetails = () => {
         onClick={() => setFreeDelivery(false)}
         className={` ${freeDelivery ? " fixed  top-0 left-0 z-50 flex justify-between items-center " : "hidden "} w-full h-screen bg-[#959393d2]  `}
       >
-        <div className="w-170 h-135 mx-auto relative">
+        <div className="w-170 h-125 mx-auto relative">
           <button className=" w-6 h-6 flex justify-center items-center text-sm font-bold absolute -top-5 -right-5 bg-[#ffffffd1] rounded-sm  cursor-pointer ">
             {" "}
             X
           </button>
           <div
             onClick={(e) => e.stopPropagation()}
-            className=" w-170 h-130 bg-[#fdfdfd49] py-12 px-6 rounded-md    mx-auto  "
+            className=" w-170 h-120 bg-[#fdfdfd49] py-12 px-6 rounded-md    mx-auto  "
           >
            <FreeDelivery/>
           </div>

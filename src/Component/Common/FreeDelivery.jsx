@@ -23,7 +23,7 @@ const FreeDelivery = () => {
          dispatch(postalReducer(value))
         
        }else{
-         setActiveOff(true)
+         setActiveOff(true) 
        }
     }
 
