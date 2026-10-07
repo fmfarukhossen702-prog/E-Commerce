@@ -42,7 +42,7 @@ const Card = ({
   };
   const notify = (matchItem) => {
     matchItem.length == 0
-      ? toast.success("Successfull add to card!", {
+      ? toast.success("Successfull add!", {
           position: "top-right",
           autoClose: 1500,
           hideProgressBar: false,
@@ -53,7 +53,7 @@ const Card = ({
           theme: "light",
           transition: Bounce,
         })
-      : toast.warn("Allready add to card", {
+      : toast.warn("Allready added", {
           position: "top-right",
           autoClose: 1500,
           hideProgressBar: false,
@@ -65,6 +65,20 @@ const Card = ({
           transition: Bounce,
         });
   };
+
+    const removeNotify = () => {
+      toast.error("Remove Items", {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+    };
 
   const handleProduDetails = () => {
     if (itemData?.id) navigate(`/productDetails/${itemData.id}`);
@@ -83,7 +97,7 @@ const Card = ({
   const handleHeardItem = (id) => {
     if (!itemData?.id) return;
     dispatch(wishlistReducer({ ...itemData, qunt: 1 }));
-    let matchItem = cardData.filter((items) => items.id == id);
+    let matchItem = wishlistData.filter((items) => items.id == id);
     notify(matchItem);
   }
 
@@ -122,7 +136,7 @@ const Card = ({
           <div
             className={` ${deletIcon || "hidden"} cursor-pointer w-8.5 h-8.5 rounded-full text-xl text-[#161616]`}
           >
-            <RiDeleteBin3Fill className="cursor-pointer" onClick={() => dispatch(removeWishlistReducer( id ))} />
+            <RiDeleteBin3Fill className="cursor-pointer" onClick={() => {dispatch(removeWishlistReducer( id )), removeNotify()}} />
           </div>
           <div
             className={` ${eyeIconCss} cursor-pointer w-8.5 h-8.5 rounded-full  text-xl bg-white flex items-center justify-center `}
